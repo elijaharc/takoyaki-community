@@ -26,6 +26,7 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'devise'
 gem 'dotenv-rails'
+gem 'nokogiri'
 gem 'ransack'
 gem 'rubocop'
 
