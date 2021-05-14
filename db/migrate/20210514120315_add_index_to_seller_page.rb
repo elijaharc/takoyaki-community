@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddIndexToSellerPage < ActiveRecord::Migration[6.1]
   def change
     add_reference :seller_pages, :user, foreign_key: true
