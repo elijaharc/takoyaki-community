@@ -10,10 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_14_113450) do
+ActiveRecord::Schema.define(version: 2021_05_14_122246) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "products", force: :cascade do |t|
+    t.string "product_name"
+    t.string "product_description"
+    t.decimal "price"
+    t.boolean "available"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "seller_page_id"
+    t.index ["seller_page_id"], name: "index_products_on_seller_page_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "comment"
+    t.integer "rating", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "seller_page_id"
+    t.index ["seller_page_id"], name: "index_reviews_on_seller_page_id"
+  end
+
+  create_table "seller_pages", force: :cascade do |t|
+    t.string "business_name"
+    t.string "business_info"
+    t.boolean "verified", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_seller_pages_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -31,4 +61,7 @@ ActiveRecord::Schema.define(version: 2021_05_14_113450) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "products", "seller_pages"
+  add_foreign_key "reviews", "seller_pages"
+  add_foreign_key "seller_pages", "users"
 end
