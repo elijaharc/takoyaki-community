@@ -6,7 +6,18 @@ module.exports = {
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      colors:{
+        transparent: 'transparent',
+        current: 'currentColor',
+        blue:{
+          light: '#3b5998',
+        }
+      },
+      container:{
+        center: true,
+      }
+    },
   },
   variants: {
     extend: {},
