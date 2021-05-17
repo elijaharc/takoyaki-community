@@ -50,6 +50,6 @@ class SellerPagesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def seller_page_params
-      params.require(:seller_page).permit(:business_name, :business_info, :verified, :user_id)    
+      params.require(:seller_page).permit(:business_name, :business_info, :phone_number, :verified, :user_id)    
     end
 end
