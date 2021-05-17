@@ -2,7 +2,6 @@
 
 Rails.application.routes.draw do
   resources :seller_pages
-  # resources :broker_stocks, only: [:create, :destroy, :show]
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
