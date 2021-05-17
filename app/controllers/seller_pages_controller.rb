@@ -21,7 +21,7 @@ class SellerPagesController < ApplicationController
     @seller_page.user_id = current_user.id
 
     if @seller_page.save
-        redirect_to seller_page_path, notice: "Seller page was successfully created."
+        redirect_to seller_pages_path, notice: "Seller page was successfully created."
     else
        render action: 'new'
     end
