@@ -3,4 +3,5 @@
 class SellerPage < ApplicationRecord
   belongs_to :user
   has_many :seller_products
+  validates :business_name, :business_info, presence: true
 end
