@@ -36,7 +36,7 @@ class SellerPagesController < ApplicationController
     end
   end
 
-  # DELETE 
+  # DELETE /seller_pages/:id
   def destroy
     @seller_page.destroy
     redirect_to seller_pages_path, notice: "Seller page was successfully deleted."
