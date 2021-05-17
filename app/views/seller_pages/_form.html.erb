@@ -1,16 +1,16 @@
-<%= form_with(model: seller_page) do |form| %>
-  <% if seller_page.errors.any? %>
+<%= form_for(@seller_page) do |form| %>
+  <% if @seller_page.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(seller_page.errors.count, "error") %> prohibited this seller_page from being saved:</h2>
+      <h2><%= pluralize(@seller_page.errors.count, "error") %> prohibited this seller_page from being saved:</h2>
 
       <ul>
-        <% seller_page.errors.each do |error| %>
+        <% @seller_page.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
-  <%= form_for(@seller_page) do |form| %>
+  
   <div class="w-full max-w-xs">
   <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
     <div class="mb-4">
@@ -24,6 +24,4 @@
 
   </form>
 </div>
-
-<% end%>
 <% end%>

@@ -1,5 +1,18 @@
-<h1>Welcome to Your Seller Page!</h1>
+<% if @seller_page.present? %>
+    <h1>Welcome to Your Seller Page!</h1>
+    <br>
+    <%= @seller_page.business_name %>
+    <br>
+    <%= @seller_page.business_info %>
+    <br>
+    <%= @seller_page.verified %>
+    <br>
+    <%= link_to 'Edit Seller Page', edit_seller_page_path(@seller_page) %>
+    <br>
+    <%= link_to "Delete Seller Page", seller_page_path(@seller_page), method: :delete, data: { confirm: "Are you sure you want to delete your seller page?"} %>  
+<% else %>
+    <%= link_to 'New Seller Page', new_seller_page_path %>
+<% end %>
 
-<br>
 
-<%= link_to 'New Seller Page', new_seller_page_path %>
+
