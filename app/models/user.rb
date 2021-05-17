@@ -1,13 +1,18 @@
 # frozen_string_literal: true
-
+require 'city-state'
+require_relative '../city.rb'
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  CITIES = $all_cities
+
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: %i[facebook]
 
   has_one :seller_page
   has_many :seller_products, through: :seller_page
+  validates :city, inclusion:  { in: CITIES }
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
