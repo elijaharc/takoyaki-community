@@ -34,7 +34,6 @@ gem 'ransack'
 gem 'rubocop'
 gem 'omniauth-facebook'
 gem 'omniauth-rails_csrf_protection'
-gem 'jquery-rails'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
