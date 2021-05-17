@@ -7,14 +7,17 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
-      colors:{
+      outline: {
+        blue: '2px solid #3c5997',
+      },
+      colors: {
         transparent: 'transparent',
         current: 'currentColor',
-        blue:{
+        blue: {
           light: '#3b5998',
         }
       },
-      container:{
+      container: {
         center: true,
       }
     },
