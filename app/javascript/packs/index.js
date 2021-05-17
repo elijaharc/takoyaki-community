@@ -16,7 +16,7 @@ $(document).on('change', '#states-of-country', function(e) {
       url: '/cities/' + $(this).children(':selected').attr('id'),
       success: function(data) {
         var opt;
-        opt = '<option value="" selected>Select Your City</option>';
+        opt = '<option value="" selected>Select City</option>';
         if (data.length === 0) {
 
         } else {
