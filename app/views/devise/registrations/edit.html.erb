@@ -1,75 +1,96 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
-  <div>
-		  	<%= f.label :first_name do %>
-			  	<span class="block text-sm font-medium text-gray-600">First Name</span> 
-			  <% end %>
-            <%= f.text_field :first_name, autofocus: true, autocomplete: "first name", class:"w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"%>
-          </div>
-          <div>
-		  <%= f.label :last_name do %>
-			  	<span class="block text-sm mt-2 font-medium text-gray-600">Last Name</span> 
-			  <% end %>
-            <%= f.text_field :last_name, autocomplete: "last name", class:"w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"%>
-          </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div>
-  <%= f.label :region, "Location" %>
-  <div class="flex flex-row justify-center gap-x-2.5">
   
-    <select id="states-of-country" name="user[region]" class="w-6/12 border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500">
-      <option id="no-state" value="" selected><%= resource.region %></option>
-      
-      
-      /* For states within US */
-      <% CS.states(:ph).each do |key, value| %>
-        <option value="<%= value %>" id="<%= key %>"><%= value %></option>
-      <% end %>
-    </select>
-          
-    <select id="cities-of-state" name="user[city]" class="w-6/12 border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" required>
-      <option value="" selected><%= resource.city %></option>
-    </select>
-  </div>
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
+      <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-md w-full space-y-8">
+          <div>
+            <%= image_tag('takoyaki', class:"mx-auto h-14 w-auto")  %>
+            <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+              Edit your account
+            </h2>
+            <p class="mt-2 text-center text-sm text-gray-600">
+              Or
+              <%= link_to root_path, class:"font-medium text-indigo-600 hover:text-indigo-500" do%>
+                Go back to home page.
+              <% end %>
+            </p>
+          </div>
+          <div class="bg-white py-8 px-6 shadow rounded-lg sm:px-10">
+            <form class="mt-8 space-y-6" action="#" method="POST">
+              <input type="hidden" name="remember" value="true">
+              <div class="rounded-md shadow-sm -space-y-px">
+                <div>
+                  <%= f.label :first_name do %>
+                    <span class="block text-sm font-medium text-gray-600">First Name</span>
+                  <% end %>
+                  <%= f.text_field :first_name, autofocus: true, autocomplete: "first name", class:"w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"%>
+                </div>
+                <div>
+                  <%= f.label :last_name do %>
+                    <span class="block text-sm mt-2 font-medium text-gray-600">Last Name</span>
+                  <% end %>
+                  <%= f.text_field :last_name, autocomplete: "last name", class:"w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"%>
+                </div>
+                <div>
+                  <%= f.label :email, class:"block text-sm mt-2 font-medium text-gray-600" %>
+                  <%= f.email_field :email, autocomplete: "email", class:"w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" %>
+                </div>
+                <div>
+                  <%= f.label :location, class:"block text-sm mt-2 font-medium text-gray-600" %>
+                  <div class="flex flex-row justify-center gap-x-2.5">
+                    <select id="states-of-country" name="user[region]" class="w-6/12 border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500">
+                      <option id="no-state" value="" selected><%= resource.region %></option>
+                      /* For states within US */
+                      <% CS.states(:ph).each do |key, value| %>
+                        <option value="<%= value %>" id="<%= key %>"><%= value %></option>
+                      <% end %>
+                    </select>
+                    <select id="cities-of-state" name="user[city]" class="w-6/12 border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" required>
+                      <option value="" selected><%= resource.city %></option>
+                    </select>
+                  </div>
+                </div>
+                <div>
+                  <%= f.label :new_password do %>
+                    <span class="block text-sm mt-2 font-medium text-gray-600">New Password</span>
+                  <% end %>
+                  <%= f.password_field :new_password, autocomplete: "new-password", class:"w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" %>
+                </div>
+                <div>
+                  <%= f.label :password_confirmation do %>
+                    <span class="block text-sm mt-2 font-medium text-gray-600">Password Confirmation</span>
+                  <% end %>
+                  <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" %>
+                </div>
+                <div>
+                  <%= f.label :current_password do %>
+                    <span class="block text-sm mt-2 font-medium text-gray-600">Current Password</span>
+                  <% end %>
+                  <%= f.password_field :current_password, autocomplete: "off", class:"w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" %>
+                </div>
+              </div>
+              <div>
+                <%= f.button :submit,class:"group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm mt-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500", value: 'Sign Up' do%>
+                  <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                    <!-- Heroicon name: solid/lock-closed -->
+                    <svg class="h-7 w-7 text-indigo-300 group-hover:text-indigo-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                  Update 
+                <% end %>
+                <%= link_to registration_path(resource_name), data: { confirm: "Are you sure? There's no turning back." }, method: :delete, class:"group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm mt-4 font-medium rounded-md text-white bg-red-600 hover:bg-white-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" do %>
+                  <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                    <!-- Heroicon name: solid/lock-closed -->
+                    
+                    <svg class="h-6 w-6 text-red-200 group-hover:text-red-400" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 20 20" fill="currentColor" ;transform:;-ms-filter:"><path d="M6 7C5.447 7 5 7 5 7v13c0 1.104.896 2 2 2h10c1.104 0 2-.896 2-2V7c0 0-.447 0-1 0H6zM16.618 4L15 2 9 2 7.382 4 3 4 3 6 8 6 16 6 21 6 21 4z"></path></svg>
+                  </span>
+                  Delete Account
+                <% end %>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
