@@ -19,4 +19,13 @@ class ApplicationController < ActionController::Base
       u.permit(:first_name, :last_name, :region, :city, :email, :password, :current_password)
     end
   end
+
+  def after_sign_in_path_for(resource)
+    if resource.region.nil?
+      # temp redirect path
+      seller_pages_path
+    else
+      root_path
+    end
+  end
 end
