@@ -28,4 +28,12 @@ class ApplicationController < ActionController::Base
       root_path
     end
   end
+
+  # def auth_region
+  #   if current_user.region.nil?
+  #     redirect_to edit_user_registration_path 
+  #   else
+  #     redirect_to root_path
+  #   end
+  # end
 end
