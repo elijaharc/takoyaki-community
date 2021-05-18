@@ -3,6 +3,8 @@ require 'city-state'
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  validates :first_name, :last_name, :region, :city, presence: true
+  #PLS ADD OTHER VALIDATIONS
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: %i[facebook]

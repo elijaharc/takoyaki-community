@@ -1,0 +1,28 @@
+<%= form_for(current_user) do |f| %>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name%>
+
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name%>
+
+    <div>
+          <%= f.label :location, class:"block text-sm mt-2 font-medium text-gray-600" %>
+          <div class="flex flex-row justify-center gap-x-2.5">
+          
+            <select id="states-of-country" name="user[region]" class="w-6/12 border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500">
+              <option id="no-state" value="" selected>Select Region</option>
+              
+              /* For states within US */
+              <% CS.states(:ph).each do |key, value| %>
+                <option value="<%= value %>" id="<%= key %>"><%= value %></option>
+              <% end %>
+            </select>
+                  
+            <select id="cities-of-state" name="user[city]" class="w-6/12 border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" required>
+              <option value="" selected>Select City</option>
+            </select>
+          </div>
+          </div>
+
+    <%= f.submit  %>
+<% end %>   
