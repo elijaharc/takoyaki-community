@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    if resource.from_facebook == true
+    if resource.from_facebook == true && resource.region.nil? && resource.city.nil?
       # temp redirect path
       seller_pages_path
     else
@@ -29,11 +29,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  # def auth_region
-  #   if current_user.region.nil?
-  #     redirect_to edit_user_registration_path 
-  #   else
-  #     redirect_to root_path
-  #   end
-  # end
+  def auth_region
+    if User.first.nil?
+      return
+    elsif current_user.region.nil? || current_user.city.nil?
+      redirect_to edit_profile_path
+    end
+  end
 end

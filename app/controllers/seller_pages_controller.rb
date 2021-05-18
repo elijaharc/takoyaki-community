@@ -1,5 +1,6 @@
 class SellerPagesController < ApplicationController
   before_action :authenticate_user!
+  before_action :auth_region
   before_action :set_seller_page, only: %i[ show edit update destroy ]
 
   # GET /seller_page
