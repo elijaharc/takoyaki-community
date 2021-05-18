@@ -1,9 +1,13 @@
 class SellerPagesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_seller_page, only: %i[ index edit update destroy ]
+  before_action :set_seller_page, only: %i[ show edit update destroy ]
 
   # GET /seller_page
   def index
+    @seller_pages = SellerPage.all
+  end
+
+  def show
   end
 
   # GET /seller_pages/new
@@ -21,7 +25,7 @@ class SellerPagesController < ApplicationController
     @seller_page.user_id = current_user.id
 
     if @seller_page.save
-        redirect_to seller_pages_path, notice: "Seller page was successfully created."
+        redirect_to seller_page_path(@seller_page), notice: "Seller page was successfully created."
     else
        render action: 'new'
     end
@@ -30,7 +34,7 @@ class SellerPagesController < ApplicationController
   # PATCH/PUT /seller_pages/:id
   def update
     if @seller_page.update(seller_page_params)
-        redirect_to seller_pages_path, notice: "Seller page was successfully updated."
+        redirect_to seller_page_path(@seller_page), notice: "Seller page was successfully updated."
     else
       render action: 'edit'
     end
