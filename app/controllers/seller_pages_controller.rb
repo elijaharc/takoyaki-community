@@ -40,7 +40,7 @@ class SellerPagesController < ApplicationController
     end
   end
 
-  # DELETE 
+  # DELETE /seller_pages/:id
   def destroy
     @seller_page.destroy
     redirect_to seller_pages_path, notice: "Seller page was successfully deleted."
@@ -54,6 +54,6 @@ class SellerPagesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def seller_page_params
-      params.require(:seller_page).permit(:business_name, :business_info, :phone_number, :verified, :user_id)    
+      params.require(:seller_page).permit(:business_name, :business_info, :verified, :phone_number, :user_id)    
     end
 end
