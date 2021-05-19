@@ -1,0 +1,33 @@
+<%= form_for([@product.seller_page, @product]) do |form| %>
+  <% if product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+        <% product.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="w-full max-w-xs">
+  <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <div class="mb-4">
+      <%= form.text_field :product_name, autofocus: true, autocomplete: "business name", class:"appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: "Product Name"%>
+    </div>
+    <div class="mb-4">
+      <%= form.text_field :product_description, autocomplete: "business info", class:"appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: "Product Description"%>
+    </div>
+    <div class="mb-4">
+      <%= form.text_field :price, autocomplete: "phone number", class:"appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: "Price"%>
+    </div>
+    <div class="mb-4">
+      <%= form.select :available, Product::AVAILABILITY, {}, class: 'form-control form-select shadow-sm rounded-start' %>
+    </div>
+
+    <%= form.submit class: "bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded" %>
+
+  </form>
+</div>
+<% end %>

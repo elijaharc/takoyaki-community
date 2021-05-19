@@ -10,4 +10,9 @@
     <%= link_to 'Edit Seller Page', edit_seller_page_path(@seller_page) %>
     <br>
     <%= link_to "Delete Seller Page", seller_page_path(@seller_page), method: :delete, data: { confirm: "Are you sure you want to delete your seller page?"} %>  
+    <br>
+    <%= link_to 'Add new product', new_seller_page_product_path(@seller_page) %>
+    <br>
+    <%= link_to 'View your products', seller_page_products_path(@seller_page) %>
+
 <% end %>

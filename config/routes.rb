@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :seller_pages
+  resources :seller_pages do
+    resources :products
+  end
   resources :users, :only => [:update]
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
