@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>showing product</h1>
+<p>
+  <strong>Product Name:</strong>
+  <%= @product.product_name %>
+</p>
+
+<p>
+  <strong>Product Description:</strong>
+  <%= @product.product_description %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @product.price %>
+</p>
+
+<p>
+  <strong>Available:</strong>
+  <%= @product.available %>
+</p>
+
+<%= link_to 'Edit', edit_seller_page_product_path(@product) %> |
+<%= link_to 'Back', seller_page_products_path %>
