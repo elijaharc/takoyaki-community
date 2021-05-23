@@ -1,0 +1,10 @@
+<%# Extra prevention so owner of seller page cannot write own reviews %>
+<% if @seller_page.user_id == current_user.id %>
+    <h1>SORRY NOPE!!! YOU CANNOT WRITE YOUR OWN REVIEWS LOL</h1>
+<% else %>
+    <h1>New Review</h1>
+
+    <%= render 'review_form', review: @review %>
+
+    <%= link_to 'Back', seller_page_path(params[:seller_page_id]) %>
+<% end %>

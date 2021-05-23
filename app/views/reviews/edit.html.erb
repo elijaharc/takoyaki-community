@@ -1,0 +1,6 @@
+<h1>Editing Review</h1>
+
+<%= render 'review_form', review: @review %>
+
+<%= link_to 'Show', seller_page_review_path(@seller_page.id, @review) %> |
+<%= link_to 'Back', seller_page_reviews_path %>

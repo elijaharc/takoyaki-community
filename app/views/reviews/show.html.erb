@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+<br>
+<br>
+<p>Review: <%= @review.comment %></p>
+<p>Rating: <%= @review.rating %></p>
+<p>By: <%= @review.seller_page.user.first_name%></p>
+<p>By: <%= @review.created_at.to_formatted_s(:long) %></p>
+<% if @review.user_id == current_user.id %>
+    <%# <%= link_to 'Edit', edit_seller_page_review_path(@seller_page.id, @review) %> 
+    <%= link_to "Delete Review", seller_page_review_path(@seller_page.id, @review), method: :delete, data: { confirm: "Are you sure you want to delete your seller page?"} %>  
+<% end %>
+<%= link_to 'Back', :back %>
