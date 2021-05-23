@@ -5,7 +5,7 @@ class SellerPagesController < ApplicationController
 
   # GET /seller_page
   def index
-    @seller_pages = SellerPage.all
+    @seller_pages = SellerPage.where.not user_id: current_user.id
   end
 
   def show
@@ -50,7 +50,7 @@ class SellerPagesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_seller_page
-      @seller_page = current_user.seller_page
+      @seller_page = SellerPage.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
