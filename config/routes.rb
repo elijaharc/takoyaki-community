@@ -2,6 +2,7 @@
 
 Rails.application.routes.draw do
   resources :seller_pages do
+    resources :reviews
     resources :products
   end
   resources :users, :only => [:update]
