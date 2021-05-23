@@ -1,4 +1,33 @@
 <h1>Hello! View other seller pages here!</h1>
+<% if @seller_pages %>
+  <p id="notice"><%= notice %></p>
+
+  <h1>Sellers</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Business Name</th>
+        <th>Business Info</th>
+        <th>Verified?</th>
+        <th>Phone Number</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @seller_pages.each do |seller| %>
+        <tr>
+          <td><%= seller.business_name %></td>
+          <td><%= seller.business_info %></td>
+          <td><%= seller.verified %></td>
+          <td><%= seller.phone_number %></td>
+          <td><%= link_to 'Show', seller_page_path(seller.id) %></td>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+<% end %>
 <% if current_user.seller_page.nil?%>
     <%= link_to 'New Seller Page', new_seller_page_path %>
 <% else %>
