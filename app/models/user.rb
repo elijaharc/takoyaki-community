@@ -11,6 +11,7 @@ class User < ApplicationRecord
 
   has_one :seller_page, dependent: :destroy
   has_many :products, through: :seller_page
+  has_many :reviews, through: :seller_page
 
   # def self.from_omniauth(auth)
   #   where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
