@@ -10,6 +10,8 @@
         <tr>
           <th>Comment</th>
           <th>Rating</th>
+          <th>By</th>
+          <th>Date</th>
         </tr>
       </thead>
 
@@ -18,6 +20,8 @@
           <tr>
             <td><%= review.comment %></td>
             <td><%= review.rating %></td>
+            <td><%= review.seller_page.user.first_name%></td>
+            <td><%= review.created_at.to_formatted_s(:long) %></td>
             <td><%= link_to 'Show', seller_page_review_path(@seller_page.id, review.id) %></td>
         <% end %>
       </tbody>
