@@ -30,10 +30,10 @@ class ApplicationController < ActionController::Base
   end
 
   def auth_region
-    if User.first.nil?
-      return
-    elsif current_user.region.nil? || current_user.city.nil?
-      redirect_to edit_profile_path
+    if user_signed_in?
+      if current_user.region.nil? || current_user.city.nil?
+        redirect_to edit_profile_path
+      end
     end
   end
 end
