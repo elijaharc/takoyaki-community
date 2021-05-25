@@ -1,8 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html data-theme="bumblebee">
   <head>
     <title>TakoyakiCommunity</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@1.0.2/dist/full.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -11,9 +15,9 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="bg-gray-100">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+  <body class="container mx-auto">
+  <%= render 'shared/navbar'%>
+    
     <%= yield %>
   </body>
     <%= javascript_pack_tag 'index', 'data-turbolinks-track': 'reload' %>
