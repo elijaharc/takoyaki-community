@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :products
   end
   resources :users, :only => [:update]
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations' }
 
   root to: 'home#index'
   get 'cities/:state', to: 'application#cities'

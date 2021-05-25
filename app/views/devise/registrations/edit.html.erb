@@ -68,6 +68,20 @@
                   </div>
                 </div>
                 <div>
+                <% if current_user.from_facebook? %>
+                  <%= f.label :new_password do %>
+                    <span class="block text-sm mt-2 font-medium text-gray-600">New Password</span>
+                  <% end %>
+                  <%= f.password_field :none, disabled: "true",autocomplete: "new-password",value:"123456123456123456", class:"w-full border text-gray-400 border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" %>
+                </div>
+                <div>
+                  <%= f.label :password_confirmation do %>
+                    <span class="block text-sm mt-2 font-medium text-gray-600">Password Confirmation</span>
+                  <% end %>
+                  <%= f.password_field :none, disabled:"true", value:"123456123456123456", autocomplete: "new-password", class:"w-full border text-gray-400 border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" %>
+                </div>
+
+                <% else %>
                   <%= f.label :new_password do %>
                     <span class="block text-sm mt-2 font-medium text-gray-600">New Password</span>
                   <% end %>
@@ -85,6 +99,7 @@
                   <% end %>
                   <%= f.password_field :current_password, autocomplete: "off", class:"w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" %>
                 </div>
+                <% end %>
               </div>
               <div>
                 <%= f.button :submit,class:"group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm mt-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500", value: 'Sign Up' do%>
