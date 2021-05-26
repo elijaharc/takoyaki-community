@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-
   def cities
     render json: CS.cities(params[:state], :ph).to_json
   end
@@ -33,6 +32,14 @@ class ApplicationController < ActionController::Base
     if user_signed_in?
       if current_user.region.nil? || current_user.city.nil?
         redirect_to edit_profile_path
+      end
+    end
+  end
+
+  def force_otp
+    if user_signed_in?
+      if !current_user.seller_page.verified? 
+        redirect_to seller_page_otp_verification_path(current_user.seller_page.id)
       end
     end
   end
