@@ -1,11 +1,10 @@
 class SellerPagesController < ApplicationController
-  before_action :authenticate_user!
   before_action :auth_region
   before_action :set_seller_page, only: %i[ show edit update destroy ]
 
   # GET /seller_page
   def index
-    @seller_pages = SellerPage.where.not user_id: current_user.id
+    @seller_pages = SellerPage.where(region: params[:user][:region], city: params[:user][:city])
   end
 
   def show
@@ -55,6 +54,6 @@ class SellerPagesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def seller_page_params
-      params.require(:seller_page).permit(:business_name, :business_info, :verified, :phone_number, :user_id)    
+      params.require(:seller_page).permit(:business_name, :business_info, :verified, :phone_number, :region, :city, :user_id)    
     end
 end
