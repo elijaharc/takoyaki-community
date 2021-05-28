@@ -4,7 +4,9 @@
     <div class="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-md w-full space-y-8">
       <div>
+        <%= link_to root_path do%>
         <%= image_tag('takoyaki.svg', class:"mx-auto h-14 w-auto")  %>
+        <% end %>
         <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
           Please
           input your location to continue.
@@ -62,10 +64,10 @@
           </div>
         </div>
         <div>
-          <%= f.button :submit,class:"group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm mt-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-primary", value: 'Sign Up' do%>
+          <%= f.button :submit,class:"group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm mt-4 font-medium rounded-md text-white btn-primary hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-primary", value: 'Sign Up' do%>
             <span class="absolute left-0 inset-y-0 flex items-center pl-3">
               <!-- Heroicon name: solid/lock-closed -->
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-indigo-300 group-hover:text-indigo-400" fill="currentColor"viewBox="0 0 24 24"><path d="M8.707 19.707L18 10.414 13.586 6l-9.293 9.293c-.128.128-.219.289-.263.464L3 21l5.242-1.03C8.418 19.926 8.579 19.835 8.707 19.707zM21 7.414c.781-.781.781-2.047 0-2.828L19.414 3c-.781-.781-2.047-.781-2.828 0L15 4.586 19.414 9 21 7.414z"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-black-300 group-hover:text-white" fill="currentColor"viewBox="0 0 24 24"><path d="M8.707 19.707L18 10.414 13.586 6l-9.293 9.293c-.128.128-.219.289-.263.464L3 21l5.242-1.03C8.418 19.926 8.579 19.835 8.707 19.707zM21 7.414c.781-.781.781-2.047 0-2.828L19.414 3c-.781-.781-2.047-.781-2.828 0L15 4.586 19.414 9 21 7.414z"></path></svg>
             </span>
             Submit
           <% end %>
