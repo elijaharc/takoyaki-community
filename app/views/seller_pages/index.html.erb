@@ -28,9 +28,9 @@
 
   <br>
 <% end %>
-<% if current_user.seller_page.nil?%>
+<% if user_signed_in? && current_user.seller_page.nil? %>
     <%= link_to 'New Seller Page', new_seller_page_path %>
-<% else %>
+<% elsif user_signed_in? && current_user.seller_page.present? %>
     <%= link_to 'View Your Seller Page', seller_page_path(current_user.seller_page) %>
 <% end %>
     
