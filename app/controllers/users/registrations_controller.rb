@@ -21,6 +21,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update_resource(resource, params)
+    resource.seller_page.update(region: params[:region], city: params[:city])
     if current_user.provider == "facebook"
       params.delete("current_password")
       resource.update_without_password(params)
