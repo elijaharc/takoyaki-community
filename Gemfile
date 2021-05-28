@@ -28,12 +28,13 @@ gem 'ffi'
 gem 'cities'
 
 gem 'devise'
-gem 'dotenv-rails'
+gem 'dotenv-rails', require: 'dotenv/rails-now'
 gem 'nokogiri'
 gem 'ransack'
 gem 'rubocop'
 gem 'omniauth-facebook'
 gem 'omniauth-rails_csrf_protection'
+gem 'authy'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

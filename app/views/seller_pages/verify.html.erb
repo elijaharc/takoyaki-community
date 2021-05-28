@@ -1,0 +1,11 @@
+<% if !@seller_page.verified? %>
+  <br>
+  <br>
+  <%= form_tag seller_page_otp_verification_path, method: :get do %>
+    <%= text_field_tag :token, params[:token], placeholder: 'Enter OTP...', spellcheck: "false" %>
+    <%= button_tag "Verify" %>
+  <% end %>
+<% else %>
+  <h1>Your account has already been verified. Thank you.</h1>
+  <%= link_to "Back", seller_page_path(@seller_page) %>
+<% end %>
