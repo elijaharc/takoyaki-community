@@ -9,19 +9,28 @@
         Search for sellers near you:
       </p>
       <div class="flex flex-col justify-items-center content-center sm:flex-row">
-      <select class="select select-bordered select-primary w-half max-w-xs">
-        <option disabled="disabled" selected="selected">Please Choose your Region</option>
-        <option>Metro Manila</option>
-      </select>
-      <select class="select select-bordered select-primary w-half max-w-xs mr-3">
-        <option disabled="disabled" selected="selected">Please Choose your City</option>
-        <option>Pasay</option>
-        <option>Pasig</option>
-        <option>Manila</option>
-      </select>
-      <%= link_to destroy_user_session_path, method: :delete, data: {confirm: "Are you sure?"} do%>
-        <button class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill:rgba(0, 0, 0, 1);transform:;-ms-filter:"><path d="M10,18c1.846,0,3.543-0.635,4.897-1.688l4.396,4.396l1.414-1.414l-4.396-4.396C17.365,13.543,18,11.846,18,10 c0-4.411-3.589-8-8-8s-8,3.589-8,8S5.589,18,10,18z M10,4c3.309,0,6,2.691,6,6s-2.691,6-6,6s-6-2.691-6-6S6.691,4,10,4z"></path></svg></button>
+      <%= search_form_for @q do |f| %>
+      <div>
+          <%= f.label :location, class:"block text-sm mt-2 font-medium text-gray-600" %>
+          <div class="flex flex-row justify-center gap-x-2.5">
+          
+            <select id="states-of-country" name="user[region]" class="w-6/12 border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-orange-primary focus:ring-1 focus:ring-orange-primary">
+              <option id="no-state" value="" selected>Select Region</option>
+              
+              /* For states within US */
+              <% CS.states(:ph).each do |key, value| %>
+                <option value="<%= value %>" id="<%= key %>"><%= value %></option>
+              <% end %>
+            </select>
+                  
+            <select id="cities-of-state" name="user[city]" class="w-6/12 border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-orange-primary focus:ring-1 focus:ring-orange-primary" required>
+              <option value="" selected>Select City</option>
+            </select>
+          </div>
+          </div>
+        <%= f.submit %>
       <% end %>
+    
       </div>
     </div>
   </div>
