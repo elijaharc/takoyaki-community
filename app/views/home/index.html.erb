@@ -1,21 +1,28 @@
-
-
-<div class="bg-indigo-400 p-10 rounded-lg shadow-lg max-w-lg mx-auto text-white text-center mt-32">
-    <h1>Home page!</h1>
-    <% if !user_signed_in? %>
-        <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path, method: :post %>
-        <%= link_to "Sign In", new_user_session_path %>
-        <%= link_to "Sign Up", new_user_registration_path %>
-    <% end %>
-
-    <% if user_signed_in? %>
-        <%= link_to "Sign out", destroy_user_session_path, method: :delete %> |
-        <%= link_to "Seller Page Index", seller_pages_path %>  
-    <% end %>
+<div class="hero min-h-screen bg-base-200" data-theme="bumblebee">
+  <div class="flex-col hero-content lg:flex-row-reverse">
+    <%= image_tag('content.jpeg', class:"max-w-xs rounded-lg shadow-2xl")%>
+    <div>
+      <h1 class="mb-5 text-5xl font-bold">
+        Buy or Sell Products Near you.  
+      </h1>
+      <p class="mb-5">
+        Search for sellers near you:
+      </p>
+      <div class="flex flex-col justify-items-center content-center sm:flex-row">
+      <select class="select select-bordered select-primary w-half max-w-xs">
+        <option disabled="disabled" selected="selected">Please Choose your Region</option>
+        <option>Metro Manila</option>
+      </select>
+      <select class="select select-bordered select-primary w-half max-w-xs mr-3">
+        <option disabled="disabled" selected="selected">Please Choose your City</option>
+        <option>Pasay</option>
+        <option>Pasig</option>
+        <option>Manila</option>
+      </select>
+      <%= link_to destroy_user_session_path, method: :delete, data: {confirm: "Are you sure?"} do%>
+        <button class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill:rgba(0, 0, 0, 1);transform:;-ms-filter:"><path d="M10,18c1.846,0,3.543-0.635,4.897-1.688l4.396,4.396l1.414-1.414l-4.396-4.396C17.365,13.543,18,11.846,18,10 c0-4.411-3.589-8-8-8s-8,3.589-8,8S5.589,18,10,18z M10,4c3.309,0,6,2.691,6,6s-2.691,6-6,6s-6-2.691-6-6S6.691,4,10,4z"></path></svg></button>
+      <% end %>
+      </div>
+    </div>
+  </div>
 </div>
-
-
-
-
-
-

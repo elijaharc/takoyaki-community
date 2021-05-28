@@ -1,0 +1,46 @@
+<div class="navbar mb-2 shadow-lg bg-neutral text-neutral-content rounded-box mt-6">
+  <div class="flex-none hidden lg:flex dropdown dropdown-right dropdown-hover" tabindex="0">
+    <button class="btn btn-square btn-ghost">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current"><!----> <!----> <!----> <!----> <!----> <!----> <!----> <!----> <!----> <!----> <!---->
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path> <!----> <!----> <!----> <!----> <!----> <!----> <!----> <!----> <!----> <!----> <!----> <!----> <!----> <!----> <!---->
+      </svg>
+    </button>
+    <ul class="shadow menu dropdown-content bg-base-100 rounded-box w-52">
+      <li>
+        <%= link_to root_path do%>
+          Home
+        <% end %>
+      </li>
+      <li>
+        <%= link_to seller_pages_path do%>
+          Seller Page Index
+        <% end %>
+      </li>
+     
+    </ul>
+  </div>
+  <div class="flex-1 hidden px-2 mx-2 lg:flex">
+    <span class="text-lg font-bold">
+      TakoyaKom
+    </span>
+  </div>
+  <div class="flex-none">
+    <div class="avatar cursor-pointer dropdown dropdown-hover dropdown-left" tabindex="0" >
+      <ul class="shadow menu dropdown-content bg-base-100 rounded-box w-52">
+        <li>
+          <%= link_to edit_user_registration_path do%>
+            Account Settings
+          <% end %>
+        </li>
+        <li>
+          <%= link_to destroy_user_session_path, method: :delete, data: {confirm: "Are you sure you want to log out?"} do%>
+            Log-out
+          <% end %>
+        </li>
+      </ul>
+      <div class="rounded-full w-10 h-10 m-1">
+        <img src="https://i.pravatar.cc/500?img=32">
+      </div>
+    </div>
+  </div>
+</div>

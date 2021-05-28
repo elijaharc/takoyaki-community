@@ -9,16 +9,24 @@
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@1.0.2/dist/full.css" rel="stylesheet" type="text/css" />
   </head>
+  <body class="bg-gray-100 container max-h-screen">
+    <% if !user_signed_in? %>
+      <% unless current_page?(new_user_session_path) || current_page?(new_user_registration_path) || current_page?(edit_user_registration_path) %>
+        <%= render 'shared/navbar_signed_out'%>
+      <% end %>
+    <% end %>
 
-  <body class="container mx-auto">
-  <%= render 'shared/navbar'%>
-    
+    <% if user_signed_in? %>
+      <% unless current_page?(new_user_session_path) || current_page?(new_user_registration_path) || current_page?(edit_user_registration_path) %>
+        <%= render 'shared/navbar_signed_in'%>
+      <% end %>
+    <% end %>
     <%= yield %>
   </body>
-    <%= javascript_pack_tag 'index', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'index', 'data-turbolinks-track': 'reload' %>
 </html>

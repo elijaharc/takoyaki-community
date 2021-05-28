@@ -16,6 +16,9 @@ module.exports = {
         blue: {
           light: "#3b5998",
         },
+        orange: {
+          primary: "#fdba47"
+        }
       },
       container: {
         center: true,

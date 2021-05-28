@@ -1,15 +1,17 @@
 <%= render "devise/shared/error_messages", resource: resource %>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-md w-full space-y-8">
       <div>
+        <%= link_to root_path do%>
         <%= image_tag('takoyaki.svg', class:"mx-auto h-14 w-auto")  %>
+        <% end %>
         <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
           Sign up for an account
         </h2>
         <p class="mt-2 text-center text-sm text-gray-600">
           Or
-          <%= link_to new_user_session_path, class:"font-medium text-indigo-600 hover:text-indigo-500" do%>
+          <%= link_to new_user_session_path, class:"font-medium text-info hover:text-orange-primary" do%>
             Sign in if you have an account.
           <% end %>
         </p>
@@ -22,23 +24,23 @@
 		  	<%= f.label :first_name do %>
 			  	<span class="block text-sm font-medium text-gray-600">First Name</span> 
 			  <% end %>
-            <%= f.text_field :first_name, autofocus: true, autocomplete: "first name", class:"w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"%>
+            <%= f.text_field :first_name, autofocus: true, autocomplete: "first name", class:"w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-orange-primary focus:ring-1 focus:ring-orange-primary"%>
           </div>
           <div>
 		  <%= f.label :last_name do %>
 			  	<span class="block text-sm mt-2 font-medium text-gray-600">Last Name</span> 
 			  <% end %>
-            <%= f.text_field :last_name, autocomplete: "last name", class:"w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"%>
+            <%= f.text_field :last_name, autocomplete: "last name", class:"w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-orange-primary focus:ring-1 focus:ring-orange-primary"%>
           </div>
           <div>
 		  	<%= f.label :email, class:"block text-sm mt-2 font-medium text-gray-600" %>
-            <%= f.email_field :email, autocomplete: "email", class:"w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" %>
+            <%= f.email_field :email, autocomplete: "email", class:"w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-orange-primary focus:ring-1 focus:ring-orange-primary" %>
           </div>
           <div>
           <%= f.label :location, class:"block text-sm mt-2 font-medium text-gray-600" %>
           <div class="flex flex-row justify-center gap-x-2.5">
           
-            <select id="states-of-country" name="user[region]" class="w-6/12 border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500">
+            <select id="states-of-country" name="user[region]" class="w-6/12 border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-orange-primary focus:ring-1 focus:ring-orange-primary">
               <option id="no-state" value="" selected>Select Region</option>
               
               /* For states within US */
@@ -47,33 +49,33 @@
               <% end %>
             </select>
                   
-            <select id="cities-of-state" name="user[city]" class="w-6/12 border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" required>
+            <select id="cities-of-state" name="user[city]" class="w-6/12 border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-orange-primary focus:ring-1 focus:ring-orange-primary" required>
               <option value="" selected>Select City</option>
             </select>
           </div>
           </div>
           <div>
 		  	<%= f.label :password, class:"block text-sm mt-2 font-medium text-gray-600" %>
-            <%= f.password_field :password, autocomplete: "new-password",  class:"w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"%>
+            <%= f.password_field :password, autocomplete: "new-password",  class:"w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-orange-primary focus:ring-1 focus:ring-orange-primary"%>
           </div>
           <div>
 		  <%= f.label :password_confirmation do %>
 			  	<span class="block text-sm mt-2 font-medium text-gray-600">Password Confirmation</span> 
 			  <% end %>
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-orange-primary focus:ring-1 focus:ring-orange-primary" %>
           </div>
         </div>
         <div>
-          <%= f.button :submit,class:"group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm mt-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500", value: 'Sign Up' do%>
+          <%= f.button :submit,class:"group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm mt-4 font-medium rounded-md text-white btn-primary group-hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-primary", value: 'Sign Up' do%>
             <span class="absolute left-0 inset-y-0 flex items-center pl-3">
               <!-- Heroicon name: solid/lock-closed -->
-              <svg class="h-7 w-7 text-indigo-300 group-hover:text-indigo-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <svg class="h-7 w-7 text-black-300 group-hover:text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                 <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
               </svg>
             </span>
             Sign Up 
           <% end %>
-          <%= link_to user_facebook_omniauth_authorize_path, class:"group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-light hover:bg-white hover:border-blue-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mt-5", method: :post do%>
+          <%= link_to user_facebook_omniauth_authorize_path, class:"group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-light hover:bg-white hover:border-blue-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-primary mt-5", method: :post do%>
             <span class="absolute left-0 inset-y-0 flex items-center pl-3">
               <!-- Heroicon name: solid/lock-closed -->
               <svg class="h-7 w-7 text-white group-hover:text-blue-light" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill:currentColor;transform:;-ms-filter:"><path d="M20,3H4C3.447,3,3,3.448,3,4v16c0,0.552,0.447,1,1,1h8.615v-6.96h-2.338v-2.725h2.338v-2c0-2.325,1.42-3.592,3.5-3.592 c0.699-0.002,1.399,0.034,2.095,0.107v2.42h-1.435c-1.128,0-1.348,0.538-1.348,1.325v1.735h2.697l-0.35,2.725h-2.348V21H20 c0.553,0,1-0.448,1-1V4C21,3.448,20.553,3,20,3z"></path>
