@@ -1,21 +1,15 @@
+<div class="hero min-h-screen bg-base-200">
+  <div class="flex-col hero-content lg:flex-row-reverse">
 
-
-<div class="bg-indigo-400 p-10 rounded-lg shadow-lg max-w-lg mx-auto text-white text-center mt-32">
-    <h1>Home page!</h1>
-    <% if !user_signed_in? %>
-        <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path, method: :post %>
-        <%= link_to "Sign In", new_user_session_path %>
-        <%= link_to "Sign Up", new_user_registration_path %>
-    <% end %>
-
-    <% if user_signed_in? %>
-        <%= link_to "Sign out", destroy_user_session_path, method: :delete %> |
-        <%= link_to "Seller Page Index", seller_pages_path %>  
-    <% end %>
+    <%= image_tag('content.jpeg', class:"max-w-xs rounded-lg shadow-2xl")%>
+    <div>
+      <h1 class="mb-5 text-5xl font-bold">
+            Hi There!
+          </h1> 
+      <p class="mb-5">
+            Buy takoyaki products near you or sell takoyaki products to buyers near you.
+          </p> 
+      <button class="btn btn-primary">Get Started</button>
+    </div>
+  </div>
 </div>
-
-
-
-
-
-

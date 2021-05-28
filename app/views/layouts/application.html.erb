@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-theme="bumblebee">
   <head>
     <title>TakoyakiCommunity</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -9,11 +9,14 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@1.0.2/dist/full.css" rel="stylesheet" type="text/css" />
   </head>
 
-  <body class="bg-gray-100">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+  <body class="bg-gray-100 container max-h-screen">
+  <% if !user_signed_in? %>
+    <%= render 'shared/navbar_signed_out'%>
+  <% end %>
     <%= yield %>
   </body>
     <%= javascript_pack_tag 'index', 'data-turbolinks-track': 'reload' %>
