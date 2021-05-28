@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_18_124905) do
+ActiveRecord::Schema.define(version: 2021_05_28_122238) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,11 @@ ActiveRecord::Schema.define(version: 2021_05_18_124905) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
     t.string "phone_number"
+    t.string "authy_id"
+    t.bigint "review_id"
+    t.string "region"
+    t.string "city"
+    t.index ["review_id"], name: "index_seller_pages_on_review_id"
     t.index ["user_id"], name: "index_seller_pages_on_user_id"
   end
 
@@ -70,5 +75,6 @@ ActiveRecord::Schema.define(version: 2021_05_18_124905) do
   add_foreign_key "products", "seller_pages"
   add_foreign_key "reviews", "seller_pages"
   add_foreign_key "reviews", "users"
+  add_foreign_key "seller_pages", "reviews"
   add_foreign_key "seller_pages", "users"
 end
