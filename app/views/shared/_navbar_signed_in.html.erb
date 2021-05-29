@@ -12,8 +12,8 @@
         <% end %>
       </li>
       <li>
-        <%= link_to seller_pages_path do%>
-          Seller Page Index
+        <%= link_to seller_page_path(current_user.seller_page.id) do%>
+          View your seller page
         <% end %>
       </li>
      
