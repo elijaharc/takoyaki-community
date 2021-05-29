@@ -21,7 +21,11 @@ class SellerPagesController < ApplicationController
 
   # GET /seller_page
   def index
-    @seller_pages = SellerPage.where(region: params[:user][:region], city: params[:user][:city])
+    if params[:user][:city].present?
+      @seller_pages = SellerPage.where(region: params[:user][:region], city: params[:user][:city])
+      # if we want to not display current_user's seller_page
+      # .and(SellerPage.where.not user_id: current_user.id)
+    end
   end
 
   def show
