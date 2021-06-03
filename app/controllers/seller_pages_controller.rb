@@ -5,9 +5,9 @@ class SellerPagesController < ApplicationController
   # Authy Verification
   def verify
     @seller_page = current_user.seller_page
-    if params[:token].present?
+    if params[:token].present? && params[:seller_page_id].present?
       AuthyVerification.new(params[:token], params[:seller_page_id])
-      if @seller_page.verified
+      if @seller_page.verified == true
         redirect_to seller_page_path(params[:seller_page_id]), notice: "Your account is now verified. Thank you!"
       else
         flash[:notice] = "Sorry, the code you entered is invalid. Please try again."
@@ -49,6 +49,7 @@ class SellerPagesController < ApplicationController
       AuthyRequest.new(current_user.seller_page.authy_id)
       redirect_to seller_page_otp_verification_path(current_user.seller_page.id), notice: "Please verify your account by entering the One-Time Password sent to your mobile number."
     else
+      flash[:alert] = "Invalid OTP"
       render action: 'new'
     end
   end
@@ -56,7 +57,17 @@ class SellerPagesController < ApplicationController
   # PATCH/PUT /seller_pages/:id
   def update
     if @seller_page.update(seller_page_params)
-      redirect_to seller_page_path(@seller_page), notice: "Seller page was successfully updated."
+      if @seller_page.saved_change_to_attribute?("phone_number")
+        AuthyRemoveUser.new(current_user.id)
+        AuthyRegistration.new(current_user.id, params[:seller_page][:phone_number])
+        @seller_page.update(verified: false)
+        if @seller_page.verified == false
+          AuthyRequest.new(current_user.seller_page.authy_id)
+        end
+        redirect_to seller_page_otp_verification_path(current_user.seller_page.id), notice: "Please verify your account by entering the One-Time Password sent to your mobile number."
+      else
+        redirect_to seller_page_path(@seller_page), notice: "Seller page was successfully updated."
+      end
     else
       render action: 'edit'
     end
@@ -65,7 +76,7 @@ class SellerPagesController < ApplicationController
   # DELETE /seller_pages/:id
   def destroy
     @seller_page.destroy
-    redirect_to seller_pages_path, notice: "Seller page was successfully deleted."
+    redirect_to root_path, notice: "Seller page was successfully deleted."
   end
 
   private
