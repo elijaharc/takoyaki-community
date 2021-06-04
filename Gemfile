@@ -38,6 +38,7 @@ gem 'authy'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'file_validators'
+gem 'fog-aws'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
