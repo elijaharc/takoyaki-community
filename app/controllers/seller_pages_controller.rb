@@ -3,6 +3,23 @@ class SellerPagesController < ApplicationController
   before_action :auth_region
   before_action :set_seller_page, only: %i[ show edit update destroy ]
 
+  # Authy Verification
+  def verify
+    @seller_page = current_user.seller_page
+    if params[:token].present?
+      AuthyVerification.new(params[:token], params[:seller_page_id])
+      if @seller_page.verified
+        redirect_to seller_page_path(params[:seller_page_id]), notice: "Your account is now verified. Thank you!"
+      else
+        flash[:notice] = "Sorry, the code you entered is invalid. Please try again."
+        render action: 'verify'
+      end
+    else
+      flash[:notice] = "Please enter the OTP sent to your phone."
+      render action: 'verify'
+    end
+  end
+
   # GET /seller_page
   def index
     @seller_pages = SellerPage.where.not user_id: current_user.id
@@ -24,18 +41,19 @@ class SellerPagesController < ApplicationController
   def create
     @seller_page = SellerPage.new(seller_page_params)
     @seller_page.user_id = current_user.id
-
     if @seller_page.save
-        redirect_to seller_page_path(@seller_page), notice: "Seller page was successfully created."
+      AuthyRegistration.new(current_user.id, params[:seller_page][:phone_number])
+      AuthyRequest.new(current_user.seller_page.authy_id)
+      redirect_to seller_page_otp_verification_path(current_user.seller_page.id), notice: "Please verify your account by entering the One-Time Password sent to your mobile number."
     else
-       render action: 'new'
+      render action: 'new'
     end
   end
 
   # PATCH/PUT /seller_pages/:id
   def update
     if @seller_page.update(seller_page_params)
-        redirect_to seller_page_path(@seller_page), notice: "Seller page was successfully updated."
+      redirect_to seller_page_path(@seller_page), notice: "Seller page was successfully updated."
     else
       render action: 'edit'
     end

@@ -3,6 +3,7 @@
     <br>
     <p>Name: <%= @seller_page.business_name %></p>
     <p>Info: <%= @seller_page.business_info %></p>
+    <p>Seller phone number: +63<%= @seller_page.phone_number %></p>
     <p>Verified? <%= @seller_page.verified %></p>
     <% if @seller_page.user_id == current_user.id %>
         <%= link_to 'Edit Seller Page', edit_seller_page_path(@seller_page) %>
@@ -12,6 +13,8 @@
         <%= link_to 'Add new product', new_seller_page_product_path(@seller_page) %>
         <br>
         <%= link_to 'View your products', seller_page_products_path(@seller_page) %>
+        <br>
+        <%= link_to 'View reviews of your seller page', seller_page_reviews_path(@seller_page) %>
     <% else %>
         <%= link_to 'View seller products', seller_page_products_path(@seller_page) %>
         <br>

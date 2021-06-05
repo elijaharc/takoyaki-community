@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!
   before_action :auth_region
   before_action :set_seller_page
+  before_action :force_otp, only: %i[ new create ]
   before_action :set_product, only: %i[ show edit update destroy ]
 
   # GET /seller_page/:id/products
@@ -28,7 +29,7 @@ class ProductsController < ApplicationController
     @product.seller_page_id = current_user.seller_page.id
     
     if @product.save
-      redirect_to seller_page_products_path(@product), notice: "Product was successfully created."
+      redirect_to seller_page_products_path(@seller_page, @product), notice: "Product was successfully created."
     else
      render action: 'new'
     end
