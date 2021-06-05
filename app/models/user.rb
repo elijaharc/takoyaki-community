@@ -1,10 +1,15 @@
 # frozen_string_literal: true
 require 'city-state'
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   validates :first_name, :last_name, presence: true
-  #PLS ADD OTHER VALIDATIONS
+  # validates :region, :city, :presence: true, :if => :not_from_facebook?
+ 
+  # def not_from_facebook?
+  #   from_facebook == false
+  # end
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: %i[facebook]
@@ -25,6 +30,7 @@ class User < ApplicationRecord
   #     # user.skip_confirmation!
   #   end
   # end
+
   def self.from_omniauth(auth)
     if self.where(email: auth.info.email).exists?
       return_user = self.where(email: auth.info.email).first
