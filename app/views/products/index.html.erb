@@ -1,5 +1,4 @@
 <p id="notice"><%= notice %></p>
-<% if current_user.seller_page.present? %>
   <% if @products.present? %>
     <h1>Products</h1>
 
@@ -10,6 +9,7 @@
           <th>Product Description</th>
           <th>Price</th>
           <th>Available</th>
+          <th>Photo</th>
         </tr>
       </thead>
 
@@ -20,6 +20,9 @@
             <td><%= product.product_description %></td>
             <td><%= product.price %></td>
             <td><%= product.available %></td>
+            <td><%= image_tag product.image_url(:thumbnail) %></td>
+            
+
             <% if product.seller_page.user_id == current_user.id %>
               <td><%= link_to 'Show', seller_page_product_path(product.seller_page_id, product) %></td>
               <td><%= link_to 'Edit', edit_seller_page_product_path(product.seller_page_id, product) %></td>
@@ -32,10 +35,10 @@
     <br>
   <% else %>
   <br>
-  <p>Uh oh the seller does not have any products yet.</p>
+    <% if @seller_page.user_id == current_user.id %>
+      <p>You do not have any products yet.</p>
+    <% else %>
+      <p>This seller does not have any products yet.</p>
+    <% end %>
   <% end %>
 <%= link_to "Back", seller_page_path(params[:seller_page_id]) %>
-<% else %>
-  <h1>Oh no you don't have a seller page yet! Make one first</h1>
-  <%= link_to 'New Seller Page', new_seller_page_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
-<% end %>

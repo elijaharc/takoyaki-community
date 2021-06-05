@@ -6,4 +6,7 @@ class Product < ApplicationRecord
     AVAILABILITY = [
         ['Available', true], ['Sold out', false]
     ].freeze
+    validates :image, file_size: { less_than_or_equal_to: 25.megabytes }
+
+    mount_uploader :image, ProductUploader
 end

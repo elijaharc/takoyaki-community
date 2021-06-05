@@ -35,6 +35,10 @@ gem 'rubocop'
 gem 'omniauth-facebook'
 gem 'omniauth-rails_csrf_protection'
 gem 'authy'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'file_validators'
+gem 'fog-aws'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

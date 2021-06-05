@@ -21,5 +21,10 @@
   <%= @product.available %>
 </p>
 
-<%= link_to 'Edit', edit_seller_page_product_path(@product) %> |
+<p>
+  <strong>Photo:</strong>
+  <%= image_tag @product.image_url(:thumbnail) %>
+</p>
+
+<%= link_to 'Edit', edit_seller_page_product_path(@seller_page, @product) %> |
 <%= link_to 'Back', seller_page_products_path %>

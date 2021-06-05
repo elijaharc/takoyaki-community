@@ -38,7 +38,7 @@ class ProductsController < ApplicationController
   # PATCH/PUT /seller_page/:id/products/1
   def update
     if @product.update(product_params)
-      redirect_to seller_page_product_path(@product), notice: "Product was successfully updated."
+      redirect_to seller_page_products_path(@seller_page), notice: "Product was successfully updated."
     else
       render action: 'edit'
     end
@@ -62,6 +62,6 @@ class ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:product_name, :product_description, :price, :available, :seller_page_id)
+      params.require(:product).permit(:product_name, :product_description, :price, :available, :seller_page_id, :image)
     end
 end

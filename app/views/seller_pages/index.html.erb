@@ -11,6 +11,8 @@
         <th>Business Info</th>
         <th>Verified?</th>
         <th>Phone Number</th>
+        <th>Region</th>
+        <th>City</th>
       </tr>
     </thead>
 
@@ -21,6 +23,8 @@
           <td><%= seller.business_info %></td>
           <td><%= seller.verified %></td>
           <td><%= seller.phone_number %></td>
+          <td><%= seller.region %></td>
+          <td><%= seller.city %></td>
           <td><%= link_to 'Show', seller_page_path(seller.id) %></td>
       <% end %>
     </tbody>
