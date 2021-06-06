@@ -11,6 +11,13 @@
           Home
         <% end %>
       </li>
+      <li>
+        <% if user_signed_in? && current_user.seller_page.nil? %>
+          <%= link_to 'Seller Page', new_seller_page_path %>
+        <% elsif user_signed_in? && current_user.seller_page.present? %>
+            <%= link_to 'Seller Page', seller_page_path(current_user.seller_page) %>
+        <% end %>
+      </li>
     </ul>
   </div>
   <div class="flex-1 hidden px-2 mx-2 lg:flex">

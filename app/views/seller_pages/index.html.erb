@@ -1,40 +1,33 @@
-<h1>Hello! View other seller pages here!</h1>
+<%# <h1>Hello! View other seller pages here!</h1> %>
 <% if @seller_pages %>
   <p id="notice"><%= notice %></p>
 
-  <h1>Sellers</h1>
+<%= paginate @seller_pages %>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Business Name</th>
-        <th>Business Info</th>
-        <th>Verified?</th>
-        <th>Phone Number</th>
-        <th>Region</th>
-        <th>City</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @seller_pages.each do |seller| %>
-        <tr>
-          <td><%= seller.business_name %></td>
-          <td><%= seller.business_info %></td>
-          <td><%= seller.verified %></td>
-          <td><%= seller.phone_number %></td>
-          <td><%= seller.region %></td>
-          <td><%= seller.city %></td>
-          <td><%= link_to 'Show', seller_page_path(seller.id) %></td>
+  <% @seller_pages.each do |seller| %>
+  <div class="card lg:card-side shadow mb-4" data-theme="bumblebee">
+  <div class="card-body">
+    <h2 class="card-title"><%= seller.business_name %>
+    <% if seller.verified? %>
+      
+    <div class="badge badge-success mx-2">Verified</div>
+    <% end %>
+    </h2> 
+    <p><%= seller.business_info %></p> 
+    <div class="justify-end card-actions">
+    <%= link_to  seller_page_path(seller.id) do%>
+      <button class="btn btn-primary">Show</button> 
       <% end %>
-    </tbody>
-  </table>
+      
+    </div>
+  </div>
+</div>
+
+<% end %>
+
+
 
   <br>
 <% end %>
-<% if user_signed_in? && current_user.seller_page.nil? %>
-    <%= link_to 'New Seller Page', new_seller_page_path %>
-<% elsif user_signed_in? && current_user.seller_page.present? %>
-    <%= link_to 'View Your Seller Page', seller_page_path(current_user.seller_page) %>
-<% end %>
+
     

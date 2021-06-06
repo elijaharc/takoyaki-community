@@ -39,6 +39,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'file_validators'
 gem 'fog-aws'
+gem 'kaminari', :git => 'https://github.com/kaminari/kaminari'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

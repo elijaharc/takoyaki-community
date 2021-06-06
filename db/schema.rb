@@ -29,13 +29,11 @@ ActiveRecord::Schema.define(version: 2021_05_31_115919) do
 
   create_table "reviews", force: :cascade do |t|
     t.string "comment"
-    t.integer "rating", default: 5
+    t.integer "rating", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "seller_page_id"
-    t.bigint "user_id"
     t.index ["seller_page_id"], name: "index_reviews_on_seller_page_id"
-    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "seller_pages", force: :cascade do |t|
@@ -75,7 +73,6 @@ ActiveRecord::Schema.define(version: 2021_05_31_115919) do
 
   add_foreign_key "products", "seller_pages"
   add_foreign_key "reviews", "seller_pages"
-  add_foreign_key "reviews", "users"
   add_foreign_key "seller_pages", "reviews"
   add_foreign_key "seller_pages", "users"
 end
