@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!
   before_action :auth_region
   before_action :set_seller_page
-  before_action :force_otp, only: %i[ new create ]
+# before_action :force_otp, only: %i[ new create ]
   before_action :set_product, only: %i[ show edit update destroy ]
 
   # GET /seller_page/:id/products

@@ -1,5 +1,15 @@
 <% if @seller_page %>
-    <h1>Editing Seller Page</h1>
-    <%= render 'form', seller_page: @seller_page %>
-    <%= link_to 'Back', seller_pages_path %>
+  <div class="hero min-h-screen bg-base-200" data-theme="bumblebee">
+    <div class="flex-col hero-content lg:flex-row-reverse justify-between">
+      <%= image_tag('seller.svg', class:"max-w-xs  ")%>
+      <div class="justify-between mr-96">
+        <h1 class="mb-5 text-5xl font-bold">
+          Edit Seller Page  
+        </h1>
+        <div class="flex flex-col justify-items-center content-center">
+          <%= render 'form', seller_page: @seller_page %>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>

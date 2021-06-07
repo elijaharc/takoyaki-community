@@ -2,7 +2,6 @@
   <% if @seller_page.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@seller_page.errors.count, "error") %> prohibited this seller_page from being saved:</h2>
-
       <ul>
         <% @seller_page.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,27 +9,31 @@
       </ul>
     </div>
   <% end %>
-  
-  <div class="w-full max-w-xs">
-  <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-    <div class="mb-4">
-      <%= form.text_field :business_name, autofocus: true, autocomplete: "business name", class:"appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-orange-primary focus:border-orange-primary focus:z-10 sm:text-sm", placeholder: "Business Name"%>
-    </div>
-    <div class="mb-4">
-      <%= form.text_field :business_info, autocomplete: "business info", class:"appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-orange-primary focus:border-orange-primary focus:z-10 sm:text-sm", placeholder: "Business Info"%>
-    </div>
-    <div class="mb-4">
-      <%= form.text_field :phone_number, autocomplete: "phone number", class:"appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-orange-primary focus:border-orange-primary focus:z-10 sm:text-sm", placeholder: "Phone Number"%>
-    </div>
-    <div class="mb-4">
-      <%= form.hidden_field :region, value: current_user.region %>
-    </div>
-    <div class="mb-4">
-      <%= form.hidden_field :city, value: current_user.city %>
-    </div>
+  <div>
+    <div class="form-control">
+      <%= form.label :business_name, class:"label" %>
+      <div class="flex flex-col justify-center gap-x-2.5">
+        <%= form.text_field :business_name, autofocus: true, autocomplete: "business name", class:"w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-orange-primary focus:ring-1 focus:ring-orange-primary"%>
+      </div>
+      <div class="form-control">
+        <%= form.label :business_info, class:"label" %>
+        <div class="flex flex-col justify-center gap-x-2.5">
+          <%= form.text_field :business_info, autofocus: true, autocomplete: "business info", class:"w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-orange-primary focus:ring-1 focus:ring-orange-primary"%>
+        </div>
+        <div class="form-control">
+          <%= form.label :phone_number, class:"label" %>
+          <div class="flex flex-row justify-center gap-x-2.5">
 
-    <%= form.submit class: "bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded" %>
-
-  </form>
-</div>
-<% end%>
+            <input class="w-1/6 border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-orange-primary focus:ring-1 focus:ring-orange-primary" disabled value="+63"></form>
+            <%= form.text_field :phone_number, autofocus: true, autocomplete: "phone number", class:"w-5/6 border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-orange-primary focus:ring-1 focus:ring-orange-primary"%>
+          </div>
+          <div class="mb-4">
+            <%= form.hidden_field :region, value: current_user.region %>
+          </div>
+          <div class="mb-4">
+            <%= form.hidden_field :city, value: current_user.city %>
+          </div>
+          <%= form.submit class:"btn btn-md"%>
+        </div>
+      </div>
+    <% end%>
