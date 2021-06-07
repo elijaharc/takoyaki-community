@@ -4,7 +4,7 @@ class SellerPage < ApplicationRecord
   belongs_to :user
   has_many :products, dependent: :destroy
   has_many :reviews, dependent: :destroy
-validates :business_name, :business_info, :region, :city, presence: true
+  validates :business_name, :business_info, :region, :city, presence: true
 
-paginates_per 3
+  paginates_per 3
 end
