@@ -69,7 +69,7 @@ class SellerPagesController < ApplicationController
         if @seller_page.verified == false
           AuthyRequest.new(current_user.seller_page.authy_id)
         end
-        redirect_to seller_page_otp_verification_path(current_user.seller_page.id), notice: "Please verify your account by entering the One-Time Password sent to your mobile number."
+        redirect_to seller_page_otp_verification_path(current_user.seller_page.slug), notice: "Please verify your account by entering the One-Time Password sent to your mobile number."
       else
         redirect_to seller_page_path(@seller_page), notice: "Seller page was successfully updated."
       end
