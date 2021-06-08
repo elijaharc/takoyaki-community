@@ -51,7 +51,7 @@ class SellerPagesController < ApplicationController
     if @seller_page.save
       AuthyRegistration.new(current_user.id, params[:seller_page][:phone_number])
       AuthyRequest.new(current_user.seller_page.authy_id)
-      redirect_to seller_page_otp_verification_path(current_user.seller_page.id), notice: "Please verify your account by entering the One-Time Password sent to your mobile number."
+      redirect_to seller_page_otp_verification_path(current_user.seller_page.slug), notice: "Please verify your account by entering the One-Time Password sent to your mobile number."
     else
       flash[:alert] = "Invalid OTP"
       render action: 'new'
@@ -61,7 +61,7 @@ class SellerPagesController < ApplicationController
   # PATCH/PUT /seller_pages/:id
   def update
     if @seller_page.update(seller_page_params)
-      @seller_page.update(slug: seller_page_params[:business_name])
+      @seller_page.update(slug: seller_page_params[:business_name].gsub(/\s+/, "-"))
       if @seller_page.saved_change_to_attribute?("phone_number")
         AuthyRemoveUser.new(current_user.id)
         AuthyRegistration.new(current_user.id, params[:seller_page][:phone_number])
