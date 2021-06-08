@@ -61,6 +61,7 @@ class SellerPagesController < ApplicationController
   # PATCH/PUT /seller_pages/:id
   def update
     if @seller_page.update(seller_page_params)
+      @seller_page.update(slug: seller_page_params[:business_name])
       if @seller_page.saved_change_to_attribute?("phone_number")
         AuthyRemoveUser.new(current_user.id)
         AuthyRegistration.new(current_user.id, params[:seller_page][:phone_number])
@@ -86,11 +87,11 @@ class SellerPagesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_seller_page
-      @seller_page = SellerPage.find(params[:id])
+      @seller_page = SellerPage.friendly.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def seller_page_params
-      params.require(:seller_page).permit(:business_name, :business_info, :verified, :phone_number, :region, :city, :user_id)    
+      params.require(:seller_page).permit(:business_name, :business_info, :verified, :phone_number, :region, :city, :user_id, :slug)    
     end
 end
