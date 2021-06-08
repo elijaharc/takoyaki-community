@@ -20,35 +20,44 @@
             <td><%= product.product_description %></td>
             <td><%= product.price %></td>
             <td><%= product.available %></td>
-            <td><%= image_tag product.image_url(:large) %></td>
+
             
 
-            <% if product.seller_page.user_id == current_user.id %>
+            <!--<% if product.seller_page.user_id == current_user.id %>
               <td><%= link_to 'Show', seller_page_product_path(product.seller_page_id, product) %></td>
               <td><%= link_to 'Edit', edit_seller_page_product_path(product.seller_page_id, product) %></td>
               <td><%= link_to 'Destroy', seller_page_product_path(product.seller_page_id, product), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            <% end %>
+            <% end %> !-->  
+
           </tr>
 <div class="card lg:card-side bordered">
   <figure>
+  <% if product.image.present? %>
+    
     <%= image_tag product.image_url(:large)%>
+  <% end %>
   </figure> 
   <div class="card-body">
     <h2 class="card-title"><%= product.product_name %></h2> 
     <p><%= product.product_description %></p> 
     <div class="card-actions">
+      <% if product.available? %>
       <button class="btn btn-primary">Buy Now</button> 
+
+      <% else %>
+      <button class="btn btn-disabled">Buy Now</button> 
+      <% end %>
       <label for="my-modal-2" class="btn btn-ghost modal-button">More info</label> 
-<input type="checkbox" id="my-modal-2" class="modal-toggle"> 
-<div class="modal" data-theme="bumblebee">
-  <div class="modal-box">
-    <p>Enim dolorem dolorum omnis atque necessitatibus. Consequatur aut adipisci qui iusto illo eaque. Consequatur repudiandae et. Nulla ea quasi eligendi. Saepe velit autem minima.</p> 
-    <div class="modal-action">
-      <label for="my-modal-2" class="btn btn-primary">Accept</label> 
-      <label for="my-modal-2" class="btn">Close</label>
-    </div>
-  </div>
-</div>
+      <input type="checkbox" id="my-modal-2" class="modal-toggle"> 
+      <div class="modal" data-theme="bumblebee">
+        <div class="modal-box">
+          <p>Enim dolorem dolorum omnis atque necessitatibus. Consequatur aut adipisci qui iusto illo eaque. Consequatur repudiandae et. Nulla ea quasi eligendi. Saepe velit autem minima.</p> 
+          <div class="modal-action">
+            <label for="my-modal-2" class="btn btn-primary">Accept</label> 
+            <label for="my-modal-2" class="btn">Close</label>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div> 
