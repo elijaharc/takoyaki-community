@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!
   before_action :auth_region
   before_action :set_seller_page
-# before_action :force_otp, only: %i[ new create ]
+  # before_action :force_otp, only: %i[ new create ]
   before_action :set_product, only: %i[ show edit update destroy ]
 
   # GET /seller_page/:id/products
@@ -27,11 +27,11 @@ class ProductsController < ApplicationController
   def create
     @product = @seller_page.products.build(product_params)
     @product.seller_page_id = current_user.seller_page.id
-    
+
     if @product.save
-      redirect_to seller_page_products_path(@seller_page, @product), notice: "Product was successfully created."
+      redirect_to seller_page_products_path(@seller_page), notice: "Product was successfully created."
     else
-     render action: 'new'
+      render action: "new"
     end
   end
 
@@ -40,7 +40,7 @@ class ProductsController < ApplicationController
     if @product.update(product_params)
       redirect_to seller_page_products_path(@seller_page), notice: "Product was successfully updated."
     else
-      render action: 'edit'
+      render action: "edit"
     end
   end
 
@@ -51,17 +51,18 @@ class ProductsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_seller_page
-      @seller_page = current_user.seller_page
-    end
 
-    def set_product
-      @product = @seller_page.products.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_seller_page
+    @seller_page = current_user.seller_page
+  end
 
-    # Only allow a list of trusted parameters through.
-    def product_params
-      params.require(:product).permit(:product_name, :product_description, :price, :available, :seller_page_id, :image)
-    end
+  def set_product
+    @product = @seller_page.products.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def product_params
+    params.require(:product).permit(:product_name, :product_description, :price, :available, :seller_page_id, :image)
+  end
 end

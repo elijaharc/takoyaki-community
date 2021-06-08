@@ -8,8 +8,12 @@ class ProductUploader < CarrierWave::Uploader::Base
   end
 
   version :large do
-    process resize_to_fill: [150, 150]
+    process resize_to_fill: [250, 250]
   end
+
+  # version :product do 
+  #   process resize_to_fill: [400, 250]
+  # end 
 
   if Rails.env.production?
     storage :fog
