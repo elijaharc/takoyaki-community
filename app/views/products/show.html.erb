@@ -22,8 +22,10 @@
 </p>
 
 <p>
-  <strong>Photo:</strong>
-  <%= image_tag @product.image_url(:thumbnail) %>
+  <% if @product.image.present? %>    
+    <strong>Photo:</strong>
+    <%= image_tag @product.image_url(:thumbnail) %>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_seller_page_product_path(@seller_page, @product) %> |

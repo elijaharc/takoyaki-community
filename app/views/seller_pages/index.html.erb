@@ -15,7 +15,7 @@
     </h2> 
     <p><%= seller.business_info %></p> 
     <div class="justify-end card-actions">
-    <%= link_to  seller_page_path(seller.id) do%>
+    <%= link_to seller_page_path(seller.slug) do%>
       <button class="btn btn-primary">Show</button> 
       <% end %>
       

@@ -51,7 +51,7 @@ class SellerPagesController < ApplicationController
     if @seller_page.save
       AuthyRegistration.new(current_user.id, params[:seller_page][:phone_number])
       AuthyRequest.new(current_user.seller_page.authy_id)
-      redirect_to seller_page_otp_verification_path(current_user.seller_page.id), notice: "Please verify your account by entering the One-Time Password sent to your mobile number."
+      redirect_to seller_page_otp_verification_path(current_user.seller_page.slug), notice: "Please verify your account by entering the One-Time Password sent to your mobile number."
     else
       flash[:alert] = "Invalid OTP"
       render action: 'new'
@@ -61,6 +61,7 @@ class SellerPagesController < ApplicationController
   # PATCH/PUT /seller_pages/:id
   def update
     if @seller_page.update(seller_page_params)
+      @seller_page.update(slug: seller_page_params[:business_name].gsub(/\s+/, "-"))
       if @seller_page.saved_change_to_attribute?("phone_number")
         AuthyRemoveUser.new(current_user.id)
         AuthyRegistration.new(current_user.id, params[:seller_page][:phone_number])
@@ -86,11 +87,11 @@ class SellerPagesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_seller_page
-      @seller_page = SellerPage.find(params[:id])
+      @seller_page = SellerPage.friendly.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def seller_page_params
-      params.require(:seller_page).permit(:business_name, :business_info, :verified, :phone_number, :region, :city, :user_id)    
+      params.require(:seller_page).permit(:business_name, :business_info, :verified, :phone_number, :region, :city, :user_id, :slug)    
     end
 end

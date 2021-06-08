@@ -53,7 +53,7 @@ class ReviewsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_seller_page
-      @seller_page = SellerPage.find(params[:seller_page_id])
+      @seller_page = SellerPage.friendly.find(params[:seller_page_id])
     end
     
     def set_review
