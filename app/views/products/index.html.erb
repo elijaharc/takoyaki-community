@@ -20,13 +20,15 @@
             <td><%= product.product_description %></td>
             <td><%= product.price %></td>
             <td><%= product.available %></td>
-            <td><%= image_tag product.image_url(:thumbnail) %></td>
+            <% if product.image.present? %>
+              <td><%= image_tag product.image_url(:thumbnail) %></td>
+            <% end %>
             
 
             <% if product.seller_page.user_id == current_user.id %>
-              <td><%= link_to 'Show', seller_page_product_path(product.seller_page_id, product) %></td>
-              <td><%= link_to 'Edit', edit_seller_page_product_path(product.seller_page_id, product) %></td>
-              <td><%= link_to 'Destroy', seller_page_product_path(product.seller_page_id, product), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><%= link_to 'Show', seller_page_product_path(product.seller_page.slug, product) %></td>
+              <td><%= link_to 'Edit', edit_seller_page_product_path(product.seller_page.slug, product) %></td>
+              <td><%= link_to 'Destroy', seller_page_product_path(product.seller_page.slug, product), method: :delete, data: { confirm: 'Are you sure?' } %></td>
             <% end %>
           </tr>
         <% end %>
