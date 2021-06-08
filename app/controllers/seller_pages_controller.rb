@@ -22,7 +22,7 @@ class SellerPagesController < ApplicationController
   # GET /seller_page
   def index
     if params[:user][:city].present?
-@seller_pages = SellerPage.where(region: params[:user][:region], city: params[:user][:city]).page params[:page]
+      @seller_pages = SellerPage.where(region: params[:user][:region], city: params[:user][:city]).page params[:page]
       # if we want to not display current_user's seller_page
       # .and(SellerPage.where.not user_id: current_user.id)
     end
@@ -33,7 +33,11 @@ class SellerPagesController < ApplicationController
 
   # GET /seller_pages/new
   def new
-    @seller_page = SellerPage.new
+    if current_user.seller_page.nil?
+      @seller_page = SellerPage.new
+    else
+      redirect_to seller_page_path(current_user.seller_page.id)
+    end
   end
 
   # GET /seller_pages/:id/edit
