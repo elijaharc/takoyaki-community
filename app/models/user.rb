@@ -47,6 +47,7 @@ class User < ApplicationRecord
       user.first_name = auth.info.first_name
       user.last_name = auth.info.last_name
       user.from_facebook = true
+      user.profile_image = auth.info.image
       user.save
       end
     end
