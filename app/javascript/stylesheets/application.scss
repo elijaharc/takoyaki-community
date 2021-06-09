@@ -13,3 +13,27 @@
 .menu li > a{
     color: black !important;
 }
+
+.stat-value{
+    white-space: normal !important;
+    word-break: normal;
+}
+
+.stats{
+    display: flex !important;
+}
+
+.stat-desc{
+    opacity: 1 !important;
+    color: black !important;
+    margin-top: 2px !important;
+    font-size: large !important;
+    font-weight: bolder !important;
+    font-style: italic !important;
+    white-space: normal;
+}
+
+.card.bordered{
+    border-color: #9CA3AF !important;
+}
+

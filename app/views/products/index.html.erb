@@ -1,79 +1,90 @@
 <p id="notice"><%= notice %></p>
-  <% if @products.present? %>
-    <h1>Products</h1>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Product Name</th>
-          <th>Product Description</th>
-          <th>Price</th>
-          <th>Available</th>
-          <th>Photo</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @products.each do |product| %>
-          <tr>
-            <td><%= product.product_name %></td>
-            <td><%= product.product_description %></td>
-            <td><%= product.price %></td>
-            <td><%= product.available %></td>
-            <% if product.image.present? %>
-              <td><%= image_tag product.image_url(:thumbnail) %></td>
-            <% end %>
-            
-
-            <!--<% if product.seller_page.user_id == current_user.id %>
-              <td><%= link_to 'Show', seller_page_product_path(product.seller_page.slug, product) %></td>
-              <td><%= link_to 'Edit', edit_seller_page_product_path(product.seller_page.slug, product) %></td>
-              <td><%= link_to 'Destroy', seller_page_product_path(product.seller_page.slug, product), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            <% end %>  -->
-          </tr>
-<div class="card lg:card-side bordered">
-  <figure>
-  <% if product.image.present? %>
-    
-    <%= image_tag product.image_url(:large)%>
-  <% end %>
-  </figure> 
+<div class="card bordered">
   <div class="card-body">
-    <h2 class="card-title"><%= product.product_name %></h2> 
-    <p><%= product.product_description %></p> 
-    <div class="card-actions">
-      <% if product.available? %>
-      <button class="btn btn-primary">Buy Now</button> 
-
-      <% else %>
-      <button class="btn btn-disabled">Buy Now</button> 
-      <% end %>
-      <label for="my-modal-2" class="btn btn-ghost modal-button">More info</label> 
-      <input type="checkbox" id="my-modal-2" class="modal-toggle"> 
-      <div class="modal" data-theme="bumblebee">
-        <div class="modal-box">
-          <p>Enim dolorem dolorum omnis atque necessitatibus. Consequatur aut adipisci qui iusto illo eaque. Consequatur repudiandae et. Nulla ea quasi eligendi. Saepe velit autem minima.</p> 
-          <div class="modal-action">
-            <label for="my-modal-2" class="btn btn-primary">Accept</label> 
-            <label for="my-modal-2" class="btn">Close</label>
+    <% if @products.present? %>
+      <%= paginate @products %>
+      <% @products.each do |product| %>
+        <div class="card lg:card-side bordered mb-6 mt-6" data-theme="bumblebee">
+          <figure>
+            <% if product.image.present? %>
+              <%= image_tag product.image_url(:large)%>
+            <% end %>
+          </figure>
+          <div class="card-body">
+            <h2 class="card-title"><%= product.product_name %></h2>
+            <p><%= product.product_description %></p>
+            <div class="card-actions">
+              <% if product.available? %>
+                <button class="btn btn-primary">Buy Now</button>
+              <% else %>
+                <button class="btn btn-disabled">Buy Now</button>
+              <% end %>
+              <% if product.seller_page.user_id == current_user.id %>
+                <label for="my-modal-2" class="btn btn-error modal-button">Delete</label>
+                <input type="checkbox" id="my-modal-2" class="modal-toggle">
+                <div class="modal">
+                  <div class="modal-box">
+                    <p>Enim dolorem dolorum omnis atque necessitatibus. Consequatur aut adipisci qui iusto illo eaque. Consequatur repudiandae et. Nulla ea quasi eligendi. Saepe velit autem minima.</p>
+                    <div class="modal-action">
+                      <label for="my-modal-2" class="btn btn-primary">Accept</label>
+                      <label for="my-modal-2" class="btn">Close</label>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+              <label for="<%=product.id%>" class="btn btn-ghost modal-button">More info</label>
+              <input type="checkbox" id="<%=product.id%>" class="modal-toggle">
+              <div class="modal" data-theme="bumblebee">
+                <div class="modal-box">
+                  <div class="stats border border-base-300 mb-2">
+                    <div class="stat">
+                      <div class="stat-title">Product Name</div>
+                      <div class="stat-value break-all"><%= product.product_name%></div>
+                      <div class="stat-actions">
+                        <% if product.available? %>
+                          <div class="badge badge-primary"> In Stock! </div>
+                        <% else %>
+                          <div class="badge badge-error"> Out of Stock! </div>
+                        <% end %>
+                      </div>
+                    </div>
+                    <div class="stat">
+                      <div class="stat-title">Price</div>
+                      <div class="stat-value">₱ <%= product.price%></div>
+                      <div class="stat-actions">
+                        <% if @seller_page.verified? %>
+                          <div class="badge badge-info"> Verified Seller </div>
+                        <% else %>
+                          <div class="badge badge-info"> Seller not Verified </div>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="stats shadow">
+                    <div class="stat">
+                      <div class="stat-title">Description</div>
+                      <div class="stat-desc"><%=product.product_description%></div>
+                    </div>
+                  </div>
+                  <div class="modal-action">
+                    <button class="btn btn-primary">Buy Now!</button>
+                    <label for="<%=product.id%>" class="btn">Close</label>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</div> 
-
-        <% end %>
-      </tbody>
-    </table>
-    <br>
-  <% else %>
-  <br>
-    <% if @seller_page.user_id == current_user.id %>
-      <p>You do not have any products yet.</p>
+      <% end %>
+      <br>
     <% else %>
-      <p>This seller does not have any products yet.</p>
+      <br>
+      <% if @seller_page.user_id == current_user.id %>
+        <p>You do not have any products yet.</p>
+      <% else %>
+        <p>This seller does not have any products yet.</p>
+      <% end %>
     <% end %>
-  <% end %>
-<%= link_to "Back", seller_page_path(params[:seller_page_id]) %>
-
+    <%= link_to "Back", seller_page_path(params[:seller_page_id]) %>
+  </div>
+</div>
