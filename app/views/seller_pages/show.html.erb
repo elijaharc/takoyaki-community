@@ -1,21 +1,55 @@
 <% if @seller_page %>
-  <div class="card shadow-lg compact side bg-base-100" data-theme="bumblebee">
-    <div class="flex-row items-center space-x-4 card-body">
-      <div>
-        <div class="avatar">
-          <div class="rounded-full w-14 h-14 shadow"><img src="https://i.pravatar.cc/500?img=32"></div>
-        </div>
-      </div>
-       
-      <div>
-        <h2 class="card-title">Janis Johnson</h2>
-         
-        <p class="text-base-content text-opacity-40">Accounts Agent</p>
-      </div>
+<div data-theme="bumblebee" class="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-rows-3 grid-flow-col gap-6">
+<div class="card  shadow-2xl row-span-3">
+  <figure class="flex justify-center bg-primary-content">
+    <%= image_tag('sellerpage.svg', class:"max-w-sm") %>
+  </figure> 
+  <div class="card-body">
+    <h2 class="card-title flex items-center"><%= current_user.first_name %>'s Seller Page
+      <% if @seller_page.verified? %>
+       <div class="badge mx-2 bg-success">Verified</div>
+      <% end %>
+    </h2> 
+    <p class="mb-32"><%= @seller_page.business_info %></p> 
+    
+    <div class="justify-end card-actions">
+    <% if @seller_page.user_id == current_user.id %>
+    <%= link_to edit_seller_page_path(@seller_page) do%>
+      <button class="btn btn-primary items-center">Edit Seller Page <i class='bx bxs-edit-alt ml-4' ></i></button>
+      <% end %>
+      <% end %>
     </div>
   </div>
+</div> 
+<div class="card shadow-xl lg:card-side bg-primary text-primary-content col-span-2">
+  <div class="card-body">
+    <div class="card shadow-2xl bg-gray-50">
+    <div class="card-body">
+    <div class="card-title items-center text-lg"><h1 class="text-2xl">Location</h1>
+      <p class='italic'><%= @seller_page.region %>, <%= @seller_page.city%></p><i class='bx bxs-location-plus flex justify-end text-5xl'></i>
+    </div>
 
-  <h1>Welcome to Your Seller Page!</h1>
+  </div>
+  </div> 
+  </div>
+</div>
+<div class="card shadow-2xl bg-primary-content lg:card-side row-span-2 col-span-2">
+  <div class="card-body">
+    <div class="card shadow-2xl bg-gray-50 mb-32">
+    <div class="card-body">
+    <div class="card-title items-center text-lg"><h1 class="text-2xl">Contact Details</h1>
+      <p class='italic'>  +63<%= @seller_page.phone_number%></p><i class='bx bxl-messenger flex justify-end text-5xl text-info'></i>
+    </div>
+
+  </div>
+  </div> 
+    <div class="card-actions flex justify-end">
+      <button class="btn btn-secondary">More info</button>
+    </div>
+  </div>
+</div>
+
+ <!-- <h1>Welcome to Your Seller Page!</h1>
   <br>
   <p>Name: <%= @seller_page.business_name %></p>
   <p>Info: <%= @seller_page.business_info %></p>
@@ -41,5 +75,6 @@
     <%= link_to 'View all seller page reviews', seller_page_reviews_path(@seller_page.id) %>
   <% end %>
   <br>
-  <%= link_to "Back", root_path %>
+  <%= link_to "Back", root_path %> !-->
 <% end %>
+</div>

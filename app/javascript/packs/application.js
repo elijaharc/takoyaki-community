@@ -8,6 +8,7 @@ import Turbolinks from "turbolinks";
 import * as ActiveStorage from "@rails/activestorage";
 import "channels";
 import "stylesheets/application";
+import 'boxicons';
 
 Rails.start();
 Turbolinks.start();

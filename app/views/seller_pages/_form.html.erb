@@ -9,8 +9,20 @@
       </ul>
     </div>
   <% end %>
-  <div>
-    <div class="form-control">
+  <div class="card shadow-2xl bg-gray-50">
+  <div class="card body px-10 py-10">
+  <div class="flex justify-center">
+    <div class="card shadow-inner lg:card-side bg-primary text-primary-content w-full mb-4" data-theme="bumblebee">
+      <div class="card-body">
+      <%if current_page?(edit_seller_page_path)%>
+        <h1 class="text-center text-3xl font-bold flex justify-center items-center">Edit Seller Page <i class='bx bxs-edit-alt ml-4' ></i></i></h1>
+        <% else %>
+        <h1 class="text-center text-3xl font-boldflex justify-center items-center">Create Seller Page <i class='bx bxs-note ml-4'></i></h1>
+        <% end %>
+      </div>
+    </div>
+  </div>
+    <div class="form-control" data-theme="bumblebee">
       <%= form.label :business_name, class:"label" %>
       <div class="flex flex-col justify-center gap-x-2.5">
         <%= form.text_field :business_name, autofocus: true, autocomplete: "business name", class:"w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-orange-primary focus:ring-1 focus:ring-orange-primary"%>
@@ -18,13 +30,13 @@
       <div class="form-control">
         <%= form.label :business_info, class:"label" %>
         <div class="flex flex-col justify-center gap-x-2.5">
-          <%= form.text_field :business_info, autofocus: true, autocomplete: "business info", class:"w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-orange-primary focus:ring-1 focus:ring-orange-primary"%>
+          <%= form.text_area :business_info, autofocus: true, autocomplete: "business info", class:" textarea h-24 textarea-bordered border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-orange-primary focus:ring-1 focus:ring-orange-primary"%>
         </div>
         <div class="form-control">
           <%= form.label :phone_number, class:"label" %>
           <div class="flex flex-row justify-center gap-x-2.5">
 
-            <input class="w-1/6 border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-orange-primary focus:ring-1 focus:ring-orange-primary" disabled value="+63"></form>
+            <input class="w-1/6 border border-gray-300 px-3 py-2 rounded-lg shadow-inner focus:outline-none text-gray-600 focus:border-orange-primary focus:ring-1 focus:ring-orange-primary" disabled value="+63"></form>
             <%= form.text_field :phone_number, autofocus: true, autocomplete: "phone number", class:"w-5/6 border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-orange-primary focus:ring-1 focus:ring-orange-primary"%>
           </div>
           <div class="mb-4">
@@ -33,7 +45,8 @@
           <div class="mb-4">
             <%= form.hidden_field :city, value: current_user.city %>
           </div>
-          <%= form.submit class:"btn btn-md"%>
+          <%= form.submit class:"btn btn-primary-content shadow-lg"%>
         </div>
       </div>
+  </div>
     <% end%>
