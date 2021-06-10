@@ -15,7 +15,9 @@
             <p><%= product.product_description %></p>
             <div class="card-actions">
               <% if product.available? %>
-                <button class="btn btn-primary">Buy Now</button>
+              <%= link_to seller_page_path(@seller_page), class:"btn btn-primary" do%>
+                Buy Now
+                <% end %>
               <% else %>
                 <button class="btn btn-disabled">Buy Now</button>
               <% end %>

@@ -40,7 +40,12 @@
         </li>
       </ul>
       <div class="rounded-full w-10 h-10 m-1">
+      <% if current_user.from_facebook? %>
+        
         <%= image_tag current_user.profile_image %>
+        <% else %>
+        <%= image_tag ('content') %>
+      <% end %>
       </div>
     </div>
   </div>
