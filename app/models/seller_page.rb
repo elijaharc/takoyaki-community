@@ -9,6 +9,7 @@ class SellerPage < ApplicationRecord
   validates :business_name, presence: true, uniqueness: true
   validates :phone_number, format: { with: /\A\d+\z/, message: "cannot have letters." }
   validates :phone_number, length: {minimum: 10, maximum: 10}
+  validates :phone_number, uniqueness: true
   
   paginates_per 3
 

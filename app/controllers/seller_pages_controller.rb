@@ -21,8 +21,14 @@ class SellerPagesController < ApplicationController
 
   # GET /seller_page
   def index
-    if params[:user][:city].present?
-      @seller_pages = SellerPage.where(region: params[:user][:region], city: params[:user][:city]).page params[:page]
+    if params[:user][:city].present? && params[:user][:region].present?
+      @seller_pages = SellerPage.where(city: params[:user][:city]).page params[:page]
+      if @seller_pages.empty?
+        @seller_pages = SellerPage.where(region: params[:user][:region]).page params[:page]
+        if @seller_pages.empty?
+          flash[:notice] = "Sorry no results found."
+        end
+      end
       # if we want to not display current_user's seller_page
       # .and(SellerPage.where.not user_id: current_user.id)
     end
