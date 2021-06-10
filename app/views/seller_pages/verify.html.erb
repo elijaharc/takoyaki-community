@@ -1,10 +1,30 @@
 <% if !@seller_page.verified? %>
   <br>
   <br>
-  <%= form_tag seller_page_otp_verification_path, method: :get do %>
-    <%= text_field_tag :token, params[:token], placeholder: 'Enter OTP...', spellcheck: "false" %>
-    <%= button_tag "Verify" %>
-  <% end %>
+  <div class="flex justify-center">
+    <div class="card shadow bg-gray-50 w-1/2" data-theme="bumblebee">
+      <div class="card-body">
+        <div class="bg-gray-50 flex justify-center px-3 py-28" data-theme="bumblebee">
+          <div class="text-center place-items-center ">
+            <div class="max-w-md justify-items-center justify-center ">
+              <div class="mb-5 flex justify-center max-w-1/2">
+                <%= image_tag('password.svg', class:"w-3/4 justify-center mb-10")%>
+              </div>
+              <div class="text-center mb-4 italic text-gray-500">A One-Time-Pin has ben sent to +63<%= @seller_page.phone_number %></div>
+              <%= form_tag seller_page_otp_verification_path, method: :get do %>
+                <div class="form-control">
+                  <div class="flex space-x-2">
+                    <%= text_field_tag :token, params[:token], placeholder: 'Enter OTP...', spellcheck: "false", class:"w-full input input-primary input-bordered" %>
+                    <%= button_tag "Verify", class:"btn btn-primary" %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 <% else %>
   <h1>Your account has already been verified. Thank you.</h1>
   <%= link_to "Back", seller_page_path(@seller_page) %>
