@@ -80,6 +80,7 @@ class SellerPagesController < ApplicationController
 
   # DELETE /seller_pages/:id
   def destroy
+    AuthyRemoveUser.new(current_user.id)
     @seller_page.destroy
     redirect_to root_path, notice: "Seller page was successfully deleted."
   end
