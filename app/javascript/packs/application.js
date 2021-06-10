@@ -9,8 +9,20 @@ import * as ActiveStorage from "@rails/activestorage";
 import "channels";
 import "stylesheets/application";
 import 'boxicons';
+import toastr from "toastr";
 
 Rails.start();
 Turbolinks.start();
 ActiveStorage.start();
 require("jquery");
+// require("toastr")
+
+
+window.$ = $
+window.toastr = toastr
+
+$(document).ready(function(){                                                       
+    $('.field_with_errors input:first').addClass('is-error')                        
+    $('.field_with_errors select:first').addClass('is-error')                       
+    $('.field_with_errors textarea:first').addClass('is-error')                     
+  });  

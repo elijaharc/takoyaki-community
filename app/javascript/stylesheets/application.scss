@@ -1,9 +1,48 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+@import "toastr";
 
 .hero-content{
     gap: 3rem !important;
+}
+
+#toast-container > div {
+    opacity: 1;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    filter: alpha(opacity=100);
+}
+
+// .field_with_errors { display: inline; }
+
+#toast-container > .alert {
+    background-image: none !important;
+}
+
+#toast-container > .alert:before {
+    position: fixed;
+    font-family: FontAwesome;
+    font-size: 24px;
+    float: left;
+    color: #FFF;
+    padding-right: 0.5em;
+    margin: auto 0.5em auto -1.5em;
+}
+
+#toast-container > .alert-info:before {
+    content: "\f05a";
+}
+#toast-container > .alert-info:before,
+#toast-container > .alert-info {
+    color: #31708f;
+}
+
+#toast-container > .alert-success:before {
+    content: "\f00c";
+}
+#toast-container > .alert-success:before,
+#toast-container > .alert-success {
+    color: #3c763d;
 }
 
 .btn-primary{
@@ -65,4 +104,8 @@
 // }
 .textarea{
     height: 10rem !important;
+}
+
+.white{
+    color: white !important;
 }

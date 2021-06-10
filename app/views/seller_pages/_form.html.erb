@@ -1,23 +1,14 @@
 <%= form_for(@seller_page) do |form| %>
-  <% if @seller_page.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@seller_page.errors.count, "error") %> prohibited this seller_page from being saved:</h2>
-      <ul>
-        <% @seller_page.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  
   <div class="card shadow-2xl bg-gray-50">
   <div class="card body px-10 py-10">
   <div class="flex justify-center">
     <div class="card shadow-inner lg:card-side bg-primary text-primary-content w-full mb-4" data-theme="bumblebee">
       <div class="card-body">
-      <%if current_page?(edit_seller_page_path)%>
-        <h1 class="text-center text-3xl font-bold flex justify-center items-center">Edit Seller Page <i class='bx bxs-edit-alt ml-4' ></i></i></h1>
+      <%if current_page?(new_seller_page_path)%>
+        <h1 class="text-center text-3xl font-bold flex justify-center items-center">Create Seller Page <i class='bx bxs-note ml-4'></i></h1>
         <% else %>
-        <h1 class="text-center text-3xl font-boldflex justify-center items-center">Create Seller Page <i class='bx bxs-note ml-4'></i></h1>
+        <h1 class="text-center text-3xl font-bold flex justify-center items-center">Edit Seller Page <i class='bx bxs-edit-alt ml-4' ></i></i></h1>
         <% end %>
       </div>
     </div>
@@ -26,6 +17,11 @@
       <%= form.label :business_name, class:"label" %>
       <div class="flex flex-col justify-center gap-x-2.5">
         <%= form.text_field :business_name, autofocus: true, autocomplete: "business name", class:"w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-orange-primary focus:ring-1 focus:ring-orange-primary"%>
+      </div>
+      <div class="form-control" data-theme="bumblebee">
+      <%= form.label :messenger_link, class:"label" %>
+      <div class="flex flex-col justify-center gap-x-2.5">
+        <%= form.text_field :messenger_url, autofocus: true, autocomplete: "messenger link",placeholder:"Input Facebook Messenger Link", class:"w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-orange-primary focus:ring-1 focus:ring-orange-primary"%>
       </div>
       <div class="form-control">
         <%= form.label :business_info, class:"label" %>

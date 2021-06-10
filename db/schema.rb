@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2021_06_09_154932) do
-=======
 ActiveRecord::Schema.define(version: 2021_06_10_152820) do
->>>>>>> ae0b36a6a81de199165594122b4ae9052a884c1a
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,7 +30,7 @@ ActiveRecord::Schema.define(version: 2021_06_10_152820) do
     t.string "product_name"
     t.string "product_description"
     t.decimal "price"
-    t.boolean "available", default: true
+    t.boolean "available"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "seller_page_id"
@@ -44,13 +40,11 @@ ActiveRecord::Schema.define(version: 2021_06_10_152820) do
 
   create_table "reviews", force: :cascade do |t|
     t.string "comment"
-    t.integer "rating", default: 5
+    t.integer "rating", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "seller_page_id"
-    t.bigint "user_id"
     t.index ["seller_page_id"], name: "index_reviews_on_seller_page_id"
-    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "seller_pages", force: :cascade do |t|
@@ -94,7 +88,6 @@ ActiveRecord::Schema.define(version: 2021_06_10_152820) do
 
   add_foreign_key "products", "seller_pages"
   add_foreign_key "reviews", "seller_pages"
-  add_foreign_key "reviews", "users"
   add_foreign_key "seller_pages", "reviews"
   add_foreign_key "seller_pages", "users"
 end

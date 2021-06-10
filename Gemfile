@@ -26,7 +26,7 @@ gem 'ffi'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'cities'
-
+gem 'toastr-rails'
 gem 'devise'
 gem 'dotenv-rails', require: 'dotenv/rails-now'
 gem 'nokogiri'

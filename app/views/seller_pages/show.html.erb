@@ -5,7 +5,7 @@
     <%= image_tag('sellerpage.svg', class:"max-w-sm") %>
   </figure> 
   <div class="card-body">
-    <h2 class="card-title flex items-center"><%= current_user.first_name %>'s Seller Page
+    <h2 class="card-title flex items-center"><%= @seller_page.business_name %>
       <% if @seller_page.verified? %>
        <div class="badge mx-2 bg-success">Verified</div>
       <% end %>
@@ -13,10 +13,30 @@
     <p class="mb-32"><%= @seller_page.business_info %></p> 
     
     <div class="justify-end card-actions">
-    <% if @seller_page.user_id == current_user.id %>
+    <% unless !user_signed_in? %>
+      
+    
+    <% if @seller_page.user_id == current_user.id %>  
     <%= link_to edit_seller_page_path(@seller_page) do%>
       <button class="btn btn-primary items-center">Edit Seller Page <i class='bx bxs-edit-alt ml-4' ></i></button>
       <% end %>
+      <label for="<%= @seller_page.id %>" class="btn btn-error modal-button">Delete Seller Page <i class='bx bxs-trash-alt ml-4' ></i></label> 
+      <input type="checkbox" id="<%= @seller_page.id %>" class="modal-toggle"> 
+      <div class="modal">
+        <div class="modal-box">
+          <p class="text-lg">Are you sure you want to delete this seller page?</p> 
+          <br>
+          <br>
+          <br>
+          <div class="modal-action">
+          <%=link_to seller_page_path(@seller_page), method: :delete, class:"btn btn-error" do%>
+Continue
+            <% end %>
+            <label for="<%= @seller_page.id %>" class="btn">Cancel</label>
+          </div>
+        </div>
+      </div>
+<% end %>
       <% end %>
     </div>
   </div>
@@ -38,43 +58,56 @@
     <div class="card shadow-2xl bg-gray-50 mb-32">
     <div class="card-body">
     <div class="card-title items-center text-lg"><h1 class="text-2xl">Contact Details</h1>
-      <p class='italic'>  +63<%= @seller_page.phone_number%></p><i class='bx bxl-messenger flex justify-end text-5xl text-info'></i>
+      <p class='italic'>  +63<%= @seller_page.phone_number%></p> 
+      <div class="flex justify-end">
+      <%= link_to @seller_page.messenger_url, target: :_blank do%>
+      <svg xmlns="http://www.w3.org/2000/svg" class="flex justify-end" width="50" height="50" viewBox="0 0 24 24" style="fill:#2094f3;transform:;-ms-filter:"><path d="M12,3c-4.92,0-8.91,3.729-8.91,8.332c0,2.616,1.291,4.952,3.311,6.479V21l3.041-1.687 c0.811,0.228,1.668,0.35,2.559,0.35c4.92,0,8.91-3.73,8.91-8.331C20.91,6.729,16.92,3,12,3z M12.938,14.172l-2.305-2.394 l-4.438,2.454l4.865-5.163l2.305,2.395l4.439-2.455L12.938,14.172z"></path></svg>
+      <% end %>
+      </div>
     </div>
 
   </div>
   </div> 
     <div class="card-actions flex justify-end">
-      <button class="btn btn-secondary">More info</button>
+
+      
+  <% if @seller_page.products.count == 0%>
+
+<% unless !user_signed_in? %>
+  
+  <% if @seller_page.user_id == current_user.id  %>
+    
+  <%= link_to new_seller_page_product_path(@seller_page), class:"btn btn-primary" do%>
+      Add Products
+      
+  <div class="badge ml-2 badge-outline"><%=@seller_page.products.count%></div>
+  <% end %>
+  <% end %>
+<% end %>
+
+  <% else %>
+  <%= link_to seller_page_products_path(@seller_page), class:"btn btn-primary" do%>
+      View Products
+      
+  <div class="badge ml-2 badge-outline"><%=@seller_page.products.count%></div>
+  <% end %>
+  <% unless !user_signed_in? %>
+  
+  <% if @seller_page.user_id == current_user.id  %>
+    
+  <%= link_to new_seller_page_product_path(@seller_page), class:"btn btn-ghost white" do%>
+      Add Products
+      
+  <div class="badge ml-2 badge-outline">+</div>
+  <% end %>
+  <% end %>
+<% end %>
+  <% end %>
+</button> 
     </div>
   </div>
 </div>
 
- <!-- <h1>Welcome to Your Seller Page!</h1>
-  <br>
-  <p>Name: <%= @seller_page.business_name %></p>
-  <p>Info: <%= @seller_page.business_info %></p>
-  <p>Seller phone number: +63<%= @seller_page.phone_number %></p>
-  <p>Verified? <%= @seller_page.verified %></p>
-  <p>Region: <%= @seller_page.region %></p>
-  <p>City: <%= @seller_page.city %></p>
-  <% if @seller_page.user_id == current_user.id %>
-    <%= link_to 'Edit Seller Page', edit_seller_page_path(@seller_page) %>
-    <br>
-    <%= link_to "Delete Seller Page", seller_page_path(@seller_page), method: :delete, data: { confirm: "Are you sure you want to delete your seller page?"} %>
-    <br>
-    <%= link_to 'Add new product', new_seller_page_product_path(@seller_page) %>
-    <br>
-    <%= link_to 'View your products', seller_page_products_path(@seller_page) %>
-    <br>
-    <%= link_to 'View reviews of your seller page', seller_page_reviews_path(@seller_page) %>
-  <% else %>
-    <%= link_to 'View seller products', seller_page_products_path(@seller_page) %>
-    <br>
-    <%= link_to 'Write a review for this seller page', new_seller_page_review_path(@seller_page.id) %>
-    <br>
-    <%= link_to 'View all seller page reviews', seller_page_reviews_path(@seller_page.id) %>
-  <% end %>
-  <br>
-  <%= link_to "Back", root_path %> !-->
+ 
 <% end %>
 </div>
