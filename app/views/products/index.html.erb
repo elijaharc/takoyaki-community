@@ -64,7 +64,7 @@
                     </div>
                     <div class="stat">
                       <div class="stat-title">Price</div>
-                      <div class="stat-value break-all">₱ <%= product.price%></div>
+                      <div class="stat-value break-all"><%= number_to_currency(product.price, unit: "&#8369;".html_safe, precision: 2) %></div>
                       <div class="stat-actions">
                         <% if @seller_page.verified? %>
                           <div class="badge badge-info"> Verified Seller </div>
