@@ -23,7 +23,7 @@
       <div class="form-control" data-theme="bumblebee">
       <label class="label">Product Price</label>
       <div class="flex flex-col justify-center gap-x-2.5">
-        <%= form.text_field :price, autofocus: true, autocomplete: "business name", class:"w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-orange-primary focus:ring-1 focus:ring-orange-primary"%>
+        <%= form.number_field :price, autofocus: true, autocomplete: "business name", :step => 0.01, class:"w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-orange-primary focus:ring-1 focus:ring-orange-primary"%>
       </div>
       <div class="form-control" data-theme="bumblebee">
       <label class="label">Product Description</label>
