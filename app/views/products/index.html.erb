@@ -15,7 +15,7 @@
             <p><%= product.product_description %></p>
             <div class="card-actions">
               <% if product.available? %>
-              <%= link_to seller_page_path(@seller_page), class:"btn btn-primary" do%>
+             <%= link_to @seller_page.messenger_url, target: :_blank do%>
                 Buy Now
                 <% end %>
               <% else %>
