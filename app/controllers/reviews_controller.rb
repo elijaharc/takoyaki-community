@@ -4,7 +4,7 @@ class ReviewsController < ApplicationController
 
   # GET /seller_page/:id/reviews
   def index
-    @reviews = @seller_page.reviews
+    @reviews = @seller_page.reviews.page params[:page]
   end
 
   # GET /seller_page/:id/reviews/1
