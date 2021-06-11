@@ -2,7 +2,11 @@
 <div class="card bordered">
   <div class="card-body">
     <% if @products.present? %>
-      <%= paginate @products %>
+      <div class="flex justify-between items-center">
+      <%= link_to :back, class:"btn btn-primary-content" do %>
+    <i class='bx bx-arrow-back text-lg' ></i>
+    <% end %><%= paginate @products %>
+      </div>
       <% @products.each do |product| %>
         <div class="card lg:card-side bordered mb-6 mt-6" data-theme="bumblebee">
           <figure>
@@ -11,15 +15,36 @@
             <% end %>
           </figure>
           <div class="card-body">
-            <h2 class="card-title"><%= product.product_name %></h2>
+            <h2 class="card-title"><%= product.product_name %>
+            <% if product.available? %>
+      
+            <div class="badge badge-success mx-2">In Stock!</div>
+            <% else %>
+            <div class="badge badge-error mx-2">Out of Stock!</div>
+            <% end %>
+            </h2>
             <p><%= product.product_description %></p>
             <div class="card-actions">
               <% if product.available? %>
-             <%= link_to @seller_page.messenger_url, target: :_blank, class:"btn btn-primary" do%>
+             <% if @seller_page.user.id == current_user.id %>
+                    <%= link_to edit_seller_page_product_path(@seller_page, product), class:"btn btn-primary" do%>
+                Edit Product
+                <% end %>
+                      <% else %>
+                    <%= link_to @seller_page.messenger_url, target: :_blank, class:"btn btn-primary" do%>
                 Contact Seller
                 <% end %>
+                    <% end %>
               <% else %>
+              <% if @seller_page.user.id == current_user.id %>
+                    <%= link_to edit_seller_page_product_path(@seller_page, product), class:"btn btn-primary" do%>
+                Edit Product
+                <% end %>
+                      <% else %>
+              <div data-tip="Product is out of stock" class="tooltip tooltip-bottom">
                 <button class="btn btn-disabled">Contact Seller</button>
+                </div>
+                <% end %>
               <% end %>
               <label for="<%=product.id%>" class="btn btn-ghost modal-button">More info</label>
               <input type="checkbox" id="<%=product.id%>" class="modal-toggle">
@@ -56,9 +81,17 @@
                     </div>
                   </div>
                   <div class="modal-action">
+
+                    <% if @seller_page.user.id == current_user.id %>
+                    <%= link_to edit_seller_page_product_path(@seller_page, product), class:"btn btn-primary" do%>
+                Edit Product
+                <% end %>
+                      <% else %>
                     <%= link_to @seller_page.messenger_url, target: :_blank, class:"btn btn-primary" do%>
                 Contact Seller
                 <% end %>
+                    <% end %>
+
                     <label for="<%=product.id%>" class="btn">Close</label>
                   </div>
                 </div>

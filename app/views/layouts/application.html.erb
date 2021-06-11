@@ -16,7 +16,7 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@1.0.2/dist/full.css" rel="stylesheet" type="text/css" />
   </head>
 
-  <body class="bg-gray-100 container max-h-screen" data-theme="bumblebee">
+  <body class="bg-gray-100 container max-h-full" data-theme="bumblebee">
   <%= raw toastr_flash[0] if toastr_flash.length.positive?  %>
     <% if !user_signed_in? %>
       <% unless current_page?(new_user_session_path) || current_page?(new_user_registration_path) || current_page?(edit_user_registration_path) %>

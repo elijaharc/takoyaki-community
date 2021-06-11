@@ -1,10 +1,16 @@
 <%# <h1>Hello! View other seller pages here!</h1> %>
+<div class="card bordered">
+<div class="card-body">
 <% if @seller_pages %>
 
-<%= paginate @seller_pages %>
+<div class="flex justify-between items-center mt-4">
+      <%= link_to :back, class:"btn btn-primary-content" do %>
+    <i class='bx bx-arrow-back text-lg' ></i>
+    <% end %><%= paginate @seller_pages %>
+      </div>
 
   <% @seller_pages.each do |seller| %>
-  <div class="card lg:card-side shadow mb-6 mt-6" data-theme="bumblebee">
+  <div class="card lg:card-side shadow-lg bg-gray-50 mb-6 mt-6" data-theme="bumblebee">
   <div class="card-body">
     <h2 class="card-title"><%= seller.business_name %>
     <% if seller.verified? %>
@@ -30,3 +36,5 @@
 <% end %>
 
     
+</div>
+</div>
