@@ -58,10 +58,22 @@ Continue
     <div class="card shadow-2xl bg-gray-50 mb-32">
     <div class="card-body">
     <div class="card-title items-center text-lg"><h1 class="text-2xl">Contact Details</h1>
+      <% if user_signed_in? %>
+        
       <p class='italic'>  +63<%= @seller_page.phone_number%></p> 
+      <% else %>
+      <p class='italic'>  +639*********</p> 
+      <% end %>
       <div class="flex justify-end">
+      <% if user_signed_in? %>
+        
       <%= link_to @seller_page.messenger_url, target: :_blank do%>
       <svg xmlns="http://www.w3.org/2000/svg" class="flex justify-end" width="50" height="50" viewBox="0 0 24 24" style="fill:#2094f3;transform:;-ms-filter:"><path d="M12,3c-4.92,0-8.91,3.729-8.91,8.332c0,2.616,1.291,4.952,3.311,6.479V21l3.041-1.687 c0.811,0.228,1.668,0.35,2.559,0.35c4.92,0,8.91-3.73,8.91-8.331C20.91,6.729,16.92,3,12,3z M12.938,14.172l-2.305-2.394 l-4.438,2.454l4.865-5.163l2.305,2.395l4.439-2.455L12.938,14.172z"></path></svg>
+      <% end %>
+      <% else %>
+      <%= link_to new_user_registration_path, notice: "You must sign up first." do%>
+      <svg xmlns="http://www.w3.org/2000/svg" class="flex justify-end" width="50" height="50" viewBox="0 0 24 24" style="fill:#2094f3;transform:;-ms-filter:"><path d="M12,3c-4.92,0-8.91,3.729-8.91,8.332c0,2.616,1.291,4.952,3.311,6.479V21l3.041-1.687 c0.811,0.228,1.668,0.35,2.559,0.35c4.92,0,8.91-3.73,8.91-8.331C20.91,6.729,16.92,3,12,3z M12.938,14.172l-2.305-2.394 l-4.438,2.454l4.865-5.163l2.305,2.395l4.439-2.455L12.938,14.172z"></path></svg>
+      <% end %>
       <% end %>
       </div>
     </div>

@@ -97,7 +97,23 @@
     border-color: #9CA3AF !important;
 }
 
-
+::-webkit-scrollbar {
+    width: 5px;
+    height: 20px;
+  }
+  
+  ::-webkit-scrollbar-track {
+      background: #ededed;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: #2c2f34;
+    border-radius: 20px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #8b8b8b;
+  }
 // .modal{
 //     @apply transition duration-200 ease-in-out bg-neutral-focus bg-opacity-40;
 // }
