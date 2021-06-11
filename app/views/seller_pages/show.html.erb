@@ -17,6 +17,9 @@
       
     
     <% if @seller_page.user_id == current_user.id %>  
+    <%= link_to seller_page_reviews_path(@seller_page.id) do%>
+      <button class="btn btn-primary-content items-center">Reviews <i class='bx bxs-message-square-check ml-4' ></i></button>
+      <% end %>
     <%= link_to edit_seller_page_path(@seller_page) do%>
       <button class="btn btn-primary items-center">Edit Seller Page <i class='bx bxs-edit-alt ml-4' ></i></button>
       <% end %>
@@ -36,6 +39,13 @@ Continue
           </div>
         </div>
       </div>
+      <% else %>
+      <%= link_to seller_page_reviews_path(@seller_page.slug) do%>
+      <button class="btn btn-primary-content items-center">Reviews <i class='bx bxs-message-square-check ml-4' ></i></button>
+      <% end %>
+      <%= link_to new_seller_page_review_path(@seller_page.slug) do%>
+      <button class="btn btn-primary items-center">Add a Review <i class='bx bx-plus text-lg bold ml-4' ></i></button>
+      <% end %>
 <% end %>
       <% end %>
     </div>

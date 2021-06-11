@@ -6,7 +6,7 @@
     <i class='bx bx-arrow-back text-lg' ></i>
     <% end %><%= paginate @reviews %>
       </div>
-      <% @reviews.each do |reviews| %>
+      <% @reviews.each do |review| %>
         <div class="card lg:card-side shadow-lg mb-6 mt-6" data-theme="bumblebee">
           <div class="card-body">
             <h2 class="card-title"><%= review.rating %> out of 5
@@ -14,26 +14,26 @@
             <p><%= review.comment %></p>
             <div class="card-actions">
               <label for="<%=review.id%>" class="btn btn-ghost modal-button">More info</label>
-              <input type="checkbox" id="<%=product.id%>" class="modal-toggle">
+              <input type="checkbox" id="<%=review.id%>" class="modal-toggle">
               <div class="modal" data-theme="bumblebee">
                 <div class="modal-box">
                   <div class="stats border border-base-300 mb-2">
                     <div class="stat">
-                      <div class="stat-title">Product Name</div>
-                      <div class="stat-value break-all"><%= product.product_name%></div>
+                      <div class="stat-title">Rating</div>
+                      <div class="stat-value break-all"><%= review.rating %> out of 5</div>
                       <div class="stat-actions">
-                        <% if product.available? %>
-                          <div class="badge badge-primary"> In Stock! </div>
+                      <% if @seller_page.verified? %>
+                          <div class="badge badge-info"> Verified Seller </div>
                         <% else %>
-                          <div class="badge badge-error"> Out of Stock! </div>
+                          <div class="badge badge-info"> Seller not Verified </div>
                         <% end %>
                       </div>
                     </div>
                     <div class="stat">
-                      <div class="stat-title">Price</div>
-                      <div class="stat-value break-all">₱ <%= product.price%></div>
+                      <div class="stat-title">Reviewer</div>
+                      <div class="stat-value break-all"></div>
                       <div class="stat-actions">
-                        <% if @seller_page.verified? %>
+                      <% if @seller_page.verified? %>
                           <div class="badge badge-info"> Verified Seller </div>
                         <% else %>
                           <div class="badge badge-info"> Seller not Verified </div>
@@ -43,23 +43,12 @@
                   </div>
                   <div class="stats shadow">
                     <div class="stat">
-                      <div class="stat-title">Description</div>
-                      <div class="stat-desc break-normal"><%=product.product_description%></div>
+                      <div class="stat-title">Review</div>
+                      <div class="stat-desc break-normal"><%=review.comment%></div>
                     </div>
                   </div>
                   <div class="modal-action">
-
-                    <% if @seller_page.user.id == current_user.id %>
-                    <%= link_to edit_seller_page_product_path(@seller_page, product), class:"btn btn-primary" do%>
-                Edit Product
-                <% end %>
-                      <% else %>
-                    <%= link_to @seller_page.messenger_url, target: :_blank, class:"btn btn-primary" do%>
-                Contact Seller
-                <% end %>
-                    <% end %>
-
-                    <label for="<%=product.id%>" class="btn">Close</label>
+                    <label for="<%=review.id%>" class="btn">Close</label>
                   </div>
                 </div>
               </div>
@@ -71,45 +60,17 @@
     <% else %>
       <br>
       <% if @seller_page.user.id == current_user.id %>
-        <p>You do not have any products yet.</p>
+        <p>Sorry there are no reviews yet.</p>
       <% else %>
-        <p>This seller does not have any products yet.</p>
+        <p>Sorry there are no reviews yet.</p>
       <% end %>
     <% end %>
     <%# <%= link_to "Back", seller_page_path(params[:seller_page_id]) %> 
   </div>
 </div>
 
-<h1>Reviews</h1>
-
-<% if !@reviews.present? %>
-  <h1>Sorry there are no reviews yet.</h1>
-<% else %>
-  <table>
-      <thead>
-        <tr>
-          <th>Comment</th>
-          <th>Rating</th>
-          <th>By</th>
-          <th>Date</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @reviews.each do |review| %>
-          <tr>
-            <td><%= review.comment %></td>
-            <td><%= review.rating %></td>
-            <td><%= review.seller_page.user.first_name%></td>
-            <td><%= review.created_at.to_formatted_s(:long) %></td>
-            <td><%= link_to 'Show', seller_page_review_path(@seller_page.id, review.id) %></td>
-        <% end %>
-      </tbody>
-    </table>
-
-  <br>
-
-<% end %>
 
 
-<%= link_to "Back", :back %>
+
+
+

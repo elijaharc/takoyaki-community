@@ -1,29 +1,41 @@
 <%# pass in which seller page it's for, then the review itself %>
 
 <%= form_for([@seller_page, @review]) do |form| %>
-  <% if review.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
+ 
 
-      <ul>
-        <% review.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+
+
+
+<div class="card shadow-2xl bg-gray-50">
+  <div class="card body px-10 py-10">
+  <div class="flex justify-center">
+    <div class="card shadow-inner lg:card-side bg-primary text-primary-content w-full mb-4" data-theme="bumblebee">
+      <div class="card-body">
+      <%if current_page?(new_seller_page_review_path(@seller_page.id))%>
+        <h1 class="text-center text-3xl font-bold flex justify-center items-center">Add new Review <i class='bx bxs-note ml-4'></i></h1>
+        <% else %>
+        <h1 class="text-center text-3xl font-bold flex justify-center items-center">Edit Review <i class='bx bxs-edit-alt ml-4' ></i></i></h1>
         <% end %>
-      </ul>
+      </div>
     </div>
-  <% end %>
+  </div>
+    <div class="form-control" data-theme="bumblebee">
 
-<div class="w-full max-w-xs">
-  <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-    <div class="mb-4">
-      <%= form.text_field :comment, autofocus: true, autocomplete: "business name", class:"appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-orange-primary focus:border-orange-primary focus:z-10 sm:text-sm", placeholder: "Review"%>
-    </div>
-    <div class="mb-4">
-      <%= form.select :rating, Review::RATING, {}, class: 'form-control form-select shadow-sm rounded-start' %>
-    </div>
-
-    <%= form.submit class: "bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded" %>
-
-  </form>
-</div>
+      
+      <div class="form-control">
+        <%= form.label :rating, class:"label" %>
+        <div class="flex flex-col justify-center gap-x-2.5">
+        <%= form.select :rating, Review::RATING, {}, class:" border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-orange-primary focus:ring-1 focus:ring-orange-primary"%>
+        </div>
+      </div>
+      <div class="form-control" data-theme="bumblebee">
+      <label class="label">Seller Review</label>
+      <div class="flex flex-col justify-center gap-x-2.5">
+        <%= form.text_area :comment, autofocus: true, autocomplete: "product description",placeholder:"Review Comments", class:"textarea textarea-bordered w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-orange-primary focus:ring-1 focus:ring-orange-primary"%>
+      </div>
+      <div class="form-control" data-theme="bumblebee">
+          <%= form.submit class:"btn btn-primary-content shadow-lg mt-4"%>
+        </div>
+        
+  </div>
 <% end %>
