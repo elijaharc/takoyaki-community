@@ -68,7 +68,7 @@
       <br>
     <% else %>
       <br>
-      <% if @seller_page.user_id == current_user.id %>
+      <% if @seller_page.user.id == current_user.id %>
         <p>You do not have any products yet.</p>
       <% else %>
         <p>This seller does not have any products yet.</p>
