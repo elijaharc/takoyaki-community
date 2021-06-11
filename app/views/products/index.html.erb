@@ -3,7 +3,7 @@
   <div class="card-body">
     <% if @products.present? %>
       <div class="flex justify-between items-center">
-      <%= link_to :back, class:"btn btn-primary-content" do %>
+      <%= link_to seller_page_path(@seller_page), class:"btn btn-primary-content" do %>
     <i class='bx bx-arrow-back text-lg' ></i>
     <% end %><%= paginate @products %>
       </div>

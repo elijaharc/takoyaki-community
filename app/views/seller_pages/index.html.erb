@@ -4,7 +4,7 @@
 <% if @seller_pages %>
 
 <div class="flex justify-between items-center mt-4">
-      <%= link_to :back, class:"btn btn-primary-content" do %>
+      <%= link_to root_path, class:"btn btn-primary-content" do %>
     <i class='bx bx-arrow-back text-lg' ></i>
     <% end %><%= paginate @seller_pages %>
       </div>
