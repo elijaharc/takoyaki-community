@@ -31,7 +31,7 @@
                     </div>
                     <div class="stat">
                       <div class="stat-title">Reviewer</div>
-                      <div class="stat-value break-all"></div>
+                      <div class="stat-value break-all"><%= review.reviewer_first_name %> <%= review.reviewer_last_name%></div>
                       <div class="stat-actions">
                       <% if @seller_page.verified? %>
                           <div class="badge badge-info"> Verified Seller </div>
@@ -49,6 +49,11 @@
                   </div>
                   <div class="modal-action">
                     <label for="<%=review.id%>" class="btn">Close</label>
+                    <% if review.user_id == current_user.id %>
+                      <%=link_to seller_page_review_path(@seller_page.slug, review), method: :delete, class:"btn btn-error" do%>
+                        "button"
+                      <% end %>
+                    <% end %>
                   </div>
                 </div>
               </div>
