@@ -26,7 +26,8 @@ class ReviewsController < ApplicationController
     if @seller_page.user_id != current_user.id
       @review = @seller_page.reviews.build(review_params)
       @review.user_id = current_user.id
-      
+      @review.reviewer_first_name = current_user.first_name
+      @review.reviewer_last_name = current_user.last_name
       if @review.save
         redirect_to seller_page_reviews_path, notice: "Review was successfully created."
       else
@@ -62,6 +63,6 @@ class ReviewsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def review_params
-      params.require(:review).permit(:comment, :rating, :seller_page_id, :user_id)
+      params.require(:review).permit(:comment, :rating, :seller_page_id, :user_id, :reviewer_first_name, :reviewer_last_name)
     end
 end
