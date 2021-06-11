@@ -8,6 +8,7 @@ class ProductsController < ApplicationController
   # GET /seller_page/:id/products
   def index
     @products = SellerPage.find_by(slug: params[:seller_page_id]).products.page params[:page]
+    @seller_page = SellerPage.find_by(slug: params[:seller_page_id])
   end
 
   # GET /seller_page/:id/products/1
