@@ -5,7 +5,7 @@ class CreateProducts < ActiveRecord::Migration[6.1]
     create_table :products do |t|
       t.string :product_name
       t.string :product_description
-      t.decimal :price
+      t.float :price
       t.boolean :available, default: true
       t.timestamps
     end
