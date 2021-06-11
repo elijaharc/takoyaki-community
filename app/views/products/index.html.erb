@@ -12,6 +12,8 @@
           <figure>
             <% if product.image.present? %>
               <%= image_tag product.image_url(:large)%>
+              <% else %>
+              <%= image_tag('product.svg', class:"placeholderImg py-10 px-10")%>
             <% end %>
           </figure>
           <div class="card-body">
