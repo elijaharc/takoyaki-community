@@ -83,18 +83,20 @@
 }
 
 .stat-desc{
+    
     opacity: 1 !important;
     color: black !important;
     margin-top: 2px !important;
     font-size: large !important;
     font-weight: bolder !important;
     font-style: italic !important;
-    white-space: normal;
+    white-space: normal !important;
 }
 
 .card.bordered{
     border-color: #9CA3AF !important;
 }
+
 
 // .modal{
 //     @apply transition duration-200 ease-in-out bg-neutral-focus bg-opacity-40;

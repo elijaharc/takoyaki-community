@@ -15,11 +15,11 @@
             <p><%= product.product_description %></p>
             <div class="card-actions">
               <% if product.available? %>
-             <%= link_to @seller_page.messenger_url, target: :_blank do%>
-                Buy Now
+             <%= link_to @seller_page.messenger_url, target: :_blank, class:"btn btn-primary" do%>
+                Contact Seller
                 <% end %>
               <% else %>
-                <button class="btn btn-disabled">Buy Now</button>
+                <button class="btn btn-disabled">Contact Seller</button>
               <% end %>
               <label for="<%=product.id%>" class="btn btn-ghost modal-button">More info</label>
               <input type="checkbox" id="<%=product.id%>" class="modal-toggle">
@@ -52,11 +52,13 @@
                   <div class="stats shadow">
                     <div class="stat">
                       <div class="stat-title">Description</div>
-                      <div class="stat-desc"><%=product.product_description%></div>
+                      <div class="stat-desc break-normal"><%=product.product_description%></div>
                     </div>
                   </div>
                   <div class="modal-action">
-                    <button class="btn btn-primary">Buy Now!</button>
+                    <%= link_to @seller_page.messenger_url, target: :_blank, class:"btn btn-primary" do%>
+                Contact Seller
+                <% end %>
                     <label for="<%=product.id%>" class="btn">Close</label>
                   </div>
                 </div>

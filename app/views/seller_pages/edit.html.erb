@@ -1,5 +1,21 @@
 <% if @seller_page %>
-  <div class="card shadow h-screen">
+  <div class="card shadow h-full">
+<%= form_for(@seller_page) do |form| %>
+  <% if @seller_page.errors.any? %>
+    
+      <div class="m-2 text-center items-center mb-2">
+      <div class="p-2 flex justify-center">
+        <div class="flex justify-center items-center bg-white leading-none text-pink-600 rounded-full p-2 shadow text-teal text-sm">
+          <span class="flex bg-red-600 text-white rounded-full h-6 px-3 justify-center items-center">Error!</span>
+    <% @seller_page.errors.each do |error| %>
+    <ul>
+          <li><span class="px-2"><%= error.full_message %></span></li>
+    </ul>
+      <% end %>
+        </div>
+      </div>
+  <% end %>
+  <% end %>
   <div class=" card-body  bg-base-200" data-theme="bumblebee">
   
     <div class="flex justify-center">
