@@ -12,7 +12,8 @@
   <% @seller_pages.each do |seller| %>
   <div class="card lg:card-side shadow-lg bg-gray-50 mb-6 mt-6" data-theme="bumblebee">
   <div class="card-body">
-    <h2 class="card-title"><%= seller.business_name %>
+    <h2 class="card-title items-center"><%= seller.business_name %>
+    <div class="badge badge-primary mx-2"><%= seller.region %>, <%= seller.city%></div>
     <% if seller.verified? %>
       
     <div class="badge badge-success mx-2">Verified</div>

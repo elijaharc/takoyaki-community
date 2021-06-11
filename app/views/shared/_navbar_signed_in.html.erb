@@ -13,9 +13,9 @@
       </li>
       <li>
         <% if user_signed_in? && current_user.seller_page.nil? %>
-          <%= link_to 'Seller Page', new_seller_page_path %>
+          <%= link_to 'Create Seller Page', new_seller_page_path %>
         <% elsif user_signed_in? && current_user.seller_page.present? %>
-            <%= link_to 'Seller Page', seller_page_path(current_user.seller_page) %>
+            <%= link_to 'View Seller Page', seller_page_path(current_user.seller_page) %>
         <% end %>
       </li>
     </ul>
