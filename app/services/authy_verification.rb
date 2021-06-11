@@ -6,7 +6,7 @@ class AuthyVerification
     Authy.api_uri = 'https://api.authy.com'
 
     def initialize(token, seller_page_id)
-        @seller_page = SellerPage.find(seller_page_id)
+        @seller_page = SellerPage.find_by(slug: seller_page_id)
         @verification = Authy::API.verify(:id => @seller_page.authy_id, :token => token)
         if @verification.ok?
             @seller_page.update(verified: true)

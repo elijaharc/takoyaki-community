@@ -7,11 +7,11 @@ class SellerPagesController < ApplicationController
     @seller_page = current_user.seller_page
     if params[:token].present? && params[:seller_page_id].present?
       AuthyVerification.new(params[:token], params[:seller_page_id])
-      if @seller_page.verified == true
-        redirect_to seller_page_path(params[:seller_page_id]), notice: "Your account is now verified. Thank you!"
-      else
+      if !@seller_page.verified?
         flash[:notice] = "Sorry, the code you entered is invalid. Please try again."
         render action: 'verify'
+      else
+        redirect_to seller_page_path(@seller_page), notice: "Seller page was successfully updated."
       end
     else
       flash[:notice] = "Please enter the OTP sent to your phone."
